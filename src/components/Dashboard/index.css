@@ -1,0 +1,12 @@
+html, body {
+    height:100%;
+    overflow: hidden;
+}
+#root {
+    height:100%;
+}
+
+.dashboard-buttons{
+    margin-top: 5px;
+    margin-left: 60px;
+}

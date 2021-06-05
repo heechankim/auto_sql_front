@@ -1,0 +1,20 @@
+.header-root {
+    height: 80px;
+    display: flex;
+    transition: all .5s ease;
+    justify-content: space-between;
+}
+.header-logo {
+    height: 100%;
+}
+.header-nav-root {
+    display: block;
+    margin-top: 15px;
+}
+.header-nav {
+    display: flex;
+    justify-content: flex-end;
+}
+.header-account-root {
+    margin-top: 15px;
+}
