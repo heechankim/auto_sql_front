@@ -16,7 +16,13 @@ import Account from "./Account";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 345,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',
+    },
+    card: {
+        width: 345,
     },
     media: {
         height: 0,
@@ -41,15 +47,18 @@ export default function Landing(props)
     return (
         <>
             <Container>
-
-                <Card className={classes.root}>
-                    <CardHeader
-                        action={
-                            <Account {...props} />
-                        }
-                    />
-                    asd
-                </Card>
+                <div className={classes.root}>
+                    <Card className={classes.card}>
+                        <CardHeader
+                            action={
+                                <Account {...props} />
+                            }
+                        />
+                        <CardContent>
+                            로그인하여 서비스 이용
+                        </CardContent>
+                    </Card>
+                </div>
             </Container>
         </>
     );
