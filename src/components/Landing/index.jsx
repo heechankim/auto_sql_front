@@ -55,8 +55,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // https://preview.themeforest.net/item/dimon-react-next-app-landing-page-template/full_screen_preview/26271180?_ga=2.102474565.578745029.1614430241-1591077733.1609319700
-export default function Landing(props)
+export default function Landing({props, history})
 {
+    const gotoAutoSQL = <Chip label="AutoSQL 사용하기" onClick={() => { history.push('/dashboard') }} />
     const classes = useStyles();
     return (
         <div className={classes.background}>
@@ -87,17 +88,7 @@ export default function Landing(props)
                                     className={classes.heading}
                                 >
                                 {
-                                    Store.getState().User.accessToken ? 
-                                    () => {
-                                        return (<Chip
-                                            label="AutoSQL 사용하기"
-                                            onClick={() => {
-                                                history.push('/dashboard')
-                                            }}
-                                        />)
-                                    } 
-                                    : 
-                                    "로그인하여 사용하기"
+                                    Store.getState().User.accessToken ? gotoAutoSQL : "로그인하여 사용하기"
                                 }
                             </Typography>
                         </CardContent>
