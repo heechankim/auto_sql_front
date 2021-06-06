@@ -1,7 +1,7 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 
 // for redux
-import {Store} from 'Store'
+import { Store } from 'Store'
 
 // components
 import GenerateVuerd from 'components/Dashboard/generateVuerd'
@@ -15,7 +15,7 @@ import ModalItemSaveButton from 'components/Dashboard/DashBoardComponents/ModalI
 import DrawerItemCommits from 'components/Dashboard/DashBoardComponents/DrawerItemCommits'
 
 // material-ui
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { withStyles } from '@material-ui/core/styles';
 
 import Fab from '@material-ui/core/Fab';
@@ -38,51 +38,45 @@ import Draggable from 'react-draggable'
 import './index.css'
 
 const useStyles = makeStyles((theme) => ({
-    dashboardButtons: {
-        marginTop: '5px',
-        marginLeft: '60px',
-    },
     extendedIcon: {
         marginRight: theme.spacing(1),
     },
     FloatingButton: {
-        zIndex: 900000050,
+        zIndex: 999,
+        width: '60px',
+        height: '40px',
     },
 }));
 
 const StyledMenu = withStyles({
     paper: {
-      border: '1px solid #d3d4d5',
+        border: '1px solid #d3d4d5',
     },
-  })((props) => (
+})((props) => (
     <Menu
-      elevation={0}
-      getContentAnchorEl={null}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'center',
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'center',
-      }}
-      {...props}
+        elevation={0}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+        }}
+        transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+        }}
+        {...props}
     />
-  ));
+));
 
 const StyledMenuItem = withStyles((theme) => ({
     root: {
-      '&:focus': {
-        backgroundColor: theme.palette.primary.main,
-        '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-          color: theme.palette.common.white,
+        '&:hover': {
+            backgroundColor: theme.palette.primary.main,
         },
-      },
     },
-  }))(MenuItem);
+}))(MenuItem);
 
-export default function Dashboard(props)
-{
+export default function Dashboard(props) {
     // for redux
     const [erdData, setErdData] = useState({});
 
@@ -98,10 +92,10 @@ export default function Dashboard(props)
     const [dragging, setDragging] = useState(false);
 
     const handleClick = (event) => {
-        if(!dragging)
+        if (!dragging)
             setAnchorEl(event.currentTarget);
-      };
-    
+    };
+
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -115,7 +109,7 @@ export default function Dashboard(props)
                 display: 'flex'
             }}>
                 <Draggable
-                    defaultPosition={{x: 100, y: 120}}
+                    defaultPosition={{ x: 100, y: 120 }}
                     scale={1}
                     position={null}
                     onDrag={() => {
@@ -147,63 +141,44 @@ export default function Dashboard(props)
                     onClose={handleClose}
                 >
                     <StyledMenuItem>
-                        <ListItemIcon>
-                            <AddBoxIcon fontSize="small" />
-                        </ListItemIcon>
-                        {/* <ListItemText primary="새로만들기" /> */}
                         <DashBoardModalButton
                             component={ModalItemNewErd}
+                            Icon={<AddBoxIcon fontSize="small" />}
                         >
-                            새로만들기
+                            새로작성
                         </DashBoardModalButton>
                     </StyledMenuItem>
                     <StyledMenuItem>
-                        <ListItemIcon>
-                            <SystemUpdateAltIcon fontSize="small" />
-                        </ListItemIcon>
-                        <ListItemText primary="불러오기" />
+                        <DashBoardDrawerButton
+                            DrawerWidth="300px"
+                            DrawerPosition="left"
+                            component={DrawerItemErdList}
+                            onSetFunction={setErdData}
+                            Icon={<SystemUpdateAltIcon fontSize="small" />}
+                        >
+                            불러오기
+                        </DashBoardDrawerButton>
                     </StyledMenuItem>
                     <StyledMenuItem>
-                        <ListItemIcon>
-                            <SaveIcon fontSize="small" />
-                        </ListItemIcon>
-                        <ListItemText primary="저장하기" />
+                        <DashBoardModalButton
+                            component={ModalItemSaveButton}
+                            Icon={<SaveIcon fontSize="small" />}
+                        >
+                            저장하기
+                        </DashBoardModalButton>
                     </StyledMenuItem>
                     <StyledMenuItem>
-                        <ListItemIcon>
-                            <SettingsBackupRestoreIcon fontSize="small" />
-                        </ListItemIcon>
-                        <ListItemText primary="변경사항" />
+                        <DashBoardDrawerButton
+                            DrawerWidth="500px"
+                            DrawerPosition="right"
+                            component={DrawerItemCommits}
+                            onSetFunction={setErdData}
+                            Icon={<SettingsBackupRestoreIcon fontSize="small" />}
+                        >
+                            변경사항
+                        </DashBoardDrawerButton>
                     </StyledMenuItem>
                 </StyledMenu>
-                <div className={classes.dashboardButtons}>
-                    <DashBoardModalButton
-                        component={ModalItemNewErd}
-                    >
-                        새 ERD
-                    </DashBoardModalButton>
-                    <DashBoardModalButton
-                        component={ModalItemSaveButton}
-                    >
-                        저장하기
-                    </DashBoardModalButton>
-                    <DashBoardDrawerButton
-                        DrawerWidth="300px"
-                        DrawerPosition="left"
-                        component={DrawerItemErdList}
-                        onSetFunction={setErdData}
-                    >
-                        ERD
-                    </DashBoardDrawerButton>
-                    <DashBoardDrawerButton
-                        DrawerWidth="500px"
-                        DrawerPosition="right"
-                        component={DrawerItemCommits}
-                        onSetFunction={setErdData}
-                    >
-                        변경사항
-                    </DashBoardDrawerButton>
-                </div>
             </header>
             <div style={{
                 height: '100%'

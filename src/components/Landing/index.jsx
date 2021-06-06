@@ -10,10 +10,13 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 
+import Chip from '@material-ui/core/Chip'
+
 import {Typography} from "@material-ui/core";
 
 // components
 import Account from "./Account";
+import { Store } from 'Store';
 
 // style
 
@@ -83,7 +86,19 @@ export default function Landing(props)
                             <Typography variant="caption" display="block" gutterBottom
                                     className={classes.heading}
                                 >
-                                로그인하여 사용하기
+                                {
+                                    Store.getState().User.accessToken ? 
+                                    () => {
+                                        return (<Chip
+                                            label="AutoSQL 사용하기"
+                                            onClick={() => {
+                                                history.push('/dashboard')
+                                            }}
+                                        />)
+                                    } 
+                                    : 
+                                    "로그인하여 사용하기"
+                                }
                             </Typography>
                         </CardContent>
                         <CardContent className={classes.loginButton, classes.center}>

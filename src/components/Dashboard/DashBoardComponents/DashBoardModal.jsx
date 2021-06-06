@@ -51,7 +51,7 @@ export default function DashBoardModal(props)
                 in={open}
             >
                 <div className={classes.paper}>
-                    <h2 id="dashboard-modal-title">{props.title}</h2>
+                    <h2 id="dashboard-modal-title">{props.Icon} {props.title}</h2>
                     {props.children}
                 </div>
             </Fade>

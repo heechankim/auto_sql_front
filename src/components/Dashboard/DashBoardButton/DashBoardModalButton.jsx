@@ -1,8 +1,5 @@
 import React, {useEffect, useState} from 'react'
 
-// material-ui
-import Button from '@material-ui/core/Button';
-
 // components
 import DashBoardModal from "components/Dashboard/DashBoardComponents/DashBoardModal";
 
@@ -13,21 +10,30 @@ export default function DashBoardModalButton(props)
 
     return (
         <>
-            <Button
+            <div
                 variant="contained"
                 style={{
-                    width: '100px',
-                    marginRight: '20px'
+                    width: '100%',
+                    height: '100%',
+                    margin:'auto',
                 }}
                 onClick={() => {
                     setOpen(true)
                 }}
             >
+                <span
+                    style={{
+                        marginRight: '10px',
+                    }}
+                >
+                    {props.Icon}
+                </span>
                 {props.children}
-            </Button>
+            </div>
             <DashBoardModal
                 openHooks={[open, setOpen]}
                 title={props.children}
+                Icon={props.Icon}
             >
                 <Component
                     setOpen={setOpen}
