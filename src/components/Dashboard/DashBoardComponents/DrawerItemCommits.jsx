@@ -101,7 +101,7 @@ function DrawerItemCommits(props)
         <Container>
             <Timeline align="alternate">
                 {
-                    list.map((item) => (
+                    list.slice(0).reverse().map((item) => (
                         <TimelineItem
                             key={item.commitId}
                         >
