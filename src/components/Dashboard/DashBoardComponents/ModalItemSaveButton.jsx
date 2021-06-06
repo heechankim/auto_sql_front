@@ -16,14 +16,14 @@ export default function ModalItemSaveButton(props)
 
     const {setOpen} = props
 
-    useEffect(() => {
+    useEffect(async () => {
         if(Store.getState().ErdData.erdId == -1) {
             setText('선택된 ERD가 존재하지 않습니다.');
             setTimeout(() => {
                 setOpen(false);
             }, 1000);
         }
-        SaveErd(Store.getState().ErdData.erdName, Store.getState().VuerdData.editor.value)
+        await SaveErd(Store.getState().ErdData.erdName, Store.getState().VuerdData.editor.value)
             .then((result) => {
                 console.log("SaveErd - then")
                 console.log(result)
@@ -39,6 +39,7 @@ export default function ModalItemSaveButton(props)
                 console.log("SaveErd - error")
                 console.log(error)
             })
+            console.log('ddddddd')
     }, [])
 
     return (

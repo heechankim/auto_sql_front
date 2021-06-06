@@ -7,7 +7,7 @@ import {useGoogleLogin} from 'react-google-login'
 import Button from "@material-ui/core/Button";
 
 // functions
-import {HashEmail} from 'Functions'
+import {CreateUser, HashEmail} from 'Functions'
 import {SigninUser} from 'Functions'
 
 export default function GoogleLoginButton({onLogin, isLogin})
@@ -16,26 +16,61 @@ export default function GoogleLoginButton({onLogin, isLogin})
     const [user, setUser] = useState({});
 
     // callback
-    const onGoogleLoginSuccess = (response) => {
+    const onGoogleLoginSuccess = async (response) => {
         let payload = {
             id: response.profileObj.googleId,
             email: response.profileObj.email,
             name: response.profileObj.name,
             imageUrl: response.profileObj.imageUrl,
             expires_in: response.tokenObj.expires_in,
-            hashedEmail: HashEmail(response.profileObj.email),
+            userId: response.profileObj.email.split('@')[0],
             accessToken: '',
             refreshToken: '',
         }
-        console.log("payload = ");
-        console.dir(payload);
-        let signinPromise = SigninUser(payload.hashedEmail)
-        signinPromise.then((result) => {
-            payload.accessToken = result.accessToken
-            payload.refreshToken = result.refreshToken
-            onLogin(payload)
-            isLogin(true)
+
+
+
+        let signinPromise = await SigninUser(payload.userId).then(async result => {
+            if(result.code == 200) {
+                payload.accessToken = result.accessToken
+                payload.refreshToken = result.refreshToken
+                await onLogin(payload)
+                await isLogin(true)
+            }
+            else {
+                let response = await CreateUser(payload.userId)
+                await SigninUser(payload.userId).then(async result => {
+                    payload.accessToken = result.accessToken
+                    payload.refreshToken = result.refreshToken
+                    await onLogin(payload)
+                    await isLogin(true)
+                });
+            }
+            
+        }).catch(error => {
+            console.log(error)
+            
         })
+        // signinPromise.then((result) => {
+        //     console.log("signinPromise then")
+        //     payload.accessToken = result.accessToken
+        //     payload.refreshToken = result.refreshToken
+        //     onLogin(payload)
+        //     isLogin(true)
+        // })
+        // signinPromise.catch((error) =>{
+        //     console.log("signinPromise error - creating user")
+        //     let createPromise = CreateUser(payload.userId)
+        //     createPromise.then((result) => {
+        //         console.log("CreateUser success")
+        //         console.log(result)
+        //     })
+        //     createPromise.catch((error) => {
+        //         console.log("CreateUser error")
+        //         console.log(error)
+        //     })
+            
+        // })
     }
     const onGoogleloginFail = (error) => {
         console.log(error)

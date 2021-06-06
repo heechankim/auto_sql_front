@@ -16,32 +16,34 @@ export function HashEmail(email)
     const SHA256 = require('crypto-js/sha256')
     return SHA256(email).toString()
 }
-export function CreateUser(_hashedEmail)
+export async function CreateUser(userId)
 {
     let data = {
-        hashedEmail:  _hashedEmail,
+        hashedEmail:  userId,
     }
-
-    axios.post(process.env.REACT_APP_SERVER + "user",
+    let result = await axios.post(process.env.REACT_APP_SERVER + "user",
         JSON.stringify(data),
         HEADERS
     )
         .then((response) => {
             console.log("CreateUser - then")
             console.log(response)
+            return response;
         })
         .catch((error) => {
             console.log("CreateUser - error")
             console.log(error)
         })
+        return result;
 }
-export async function SigninUser(_hashedEmail)
+export async function SigninUser(userId)
 {
     const axios = require('axios')
     let data = {
-        hashedEmail: _hashedEmail,
+        hashedEmail: userId,
     }
-    return await axios.get(process.env.REACT_APP_SERVER + 'token/login/' + _hashedEmail,
+    console.log(data);
+    return await axios.get(process.env.REACT_APP_SERVER + 'token/login/' + userId,
         {
             headers: {
                 'Content-Type': 'application/json',
@@ -54,6 +56,7 @@ export async function SigninUser(_hashedEmail)
             console.log("SigninUser - then")
             console.log(response)
             return {
+                code:response.code,
                 accessToken: response.data.accessToken,
                 refreshToken: response.data.refreshToken
             };
@@ -61,6 +64,9 @@ export async function SigninUser(_hashedEmail)
         .catch((error) => {
             console.log("SigninUser - error")
             console.log(error)
+            return {
+                code:400
+            }
         })
 }
 export async function SendRefreshToken()
@@ -80,6 +86,7 @@ export async function SendRefreshToken()
 }
 export function IsUserLogin()
 {
+    console.log('IsUserLogin')
     let {Store} = require('Store')
     if(Store.getState().User.accessToken)
         return true;
@@ -111,10 +118,10 @@ export function IsUserLogin()
 // }
 export function GetUserAccessToken()
 {
-    if(!IsUserLogin())
+    console.log('GetUserAccessToken')
+    if(! IsUserLogin())
         return false
 
     let {Store} = require('Store')
-
     return Store.getState().User.accessToken
 }

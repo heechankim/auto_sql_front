@@ -79,16 +79,21 @@ export async function SaveErd(_erdName, _data)
     let data = {
         data: _data
     }
+    let token = await GetUserAccessToken();
+    console.log('토쿤' + token)
+    console.log(_erdName)
 
-    return await axios.post(process.env.REACT_APP_SERVER + 'commit/' + _erdName,
+    let response = await axios.post(process.env.REACT_APP_SERVER + 'commit/' + _erdName,
         JSON.stringify(data),
         {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                'Authorization': GetUserAccessToken(),
+                'Authorization': token,
             }
         }
-    )
+    );
+    console.log(response)
+    return response
 }
