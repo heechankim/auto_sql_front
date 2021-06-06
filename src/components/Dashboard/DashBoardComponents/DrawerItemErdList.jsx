@@ -36,7 +36,7 @@ function DrawerItemErdList(props)
         let _erdData;
         let getErdTimeLinePromise = GetErdTimeLine(_erdName)
             .then((result) => {
-                console.log('after GetErdTimeLine')
+                // console.log('after GetErdTimeLine')
                 //console.log(result)
                 const commitArray = result.data.result;
                 //console.log(commitArray[0].commitId) -> 26
@@ -44,9 +44,9 @@ function DrawerItemErdList(props)
                 return GetErd(_erdId, _commitId)
             })
             .then((result) => {
-                console.log('after GetErd')
+                // console.log('after GetErd')
                 //console.log(result)
-                console.log('GetErd data')
+                // console.log('GetErd data')
                 //console.log(result.data.result[0].data)
                 _erdData = result.data.result[0].data;
 

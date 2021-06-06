@@ -27,8 +27,8 @@ export default function Dashboard(props)
 
     useLayoutEffect(() => {
         setErdData(Store.getState().ErdData.erdData)
-        console.log('DashBoard index - setErdData')
-        console.dir(erdData)
+        // console.log('DashBoard index - setErdData')
+        // console.dir(erdData)
     }, [Store.getState().ErdData.erdData])
 
     return (
@@ -63,9 +63,10 @@ export default function Dashboard(props)
                         ERD
                     </DashBoardDrawerButton>
                     <DashBoardDrawerButton
-                        DrawerWidth="400px"
+                        DrawerWidth="500px"
                         DrawerPosition="right"
                         component={DrawerItemCommits}
+                        onSetFunction={setErdData}
                     >
                         변경사항
                     </DashBoardDrawerButton>

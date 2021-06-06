@@ -86,7 +86,7 @@ export async function SendRefreshToken()
 }
 export function IsUserLogin()
 {
-    console.log('IsUserLogin')
+    // console.log('IsUserLogin')
     let {Store} = require('Store')
     if(Store.getState().User.accessToken)
         return true;
@@ -118,7 +118,7 @@ export function IsUserLogin()
 // }
 export function GetUserAccessToken()
 {
-    console.log('GetUserAccessToken')
+    // console.log('GetUserAccessToken')
     if(! IsUserLogin())
         return false
 
