@@ -10,11 +10,20 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 
+import Chip from '@material-ui/core/Chip'
+
+import {Typography} from "@material-ui/core";
 
 // components
 import Account from "./Account";
+import { Store } from 'Store';
+
+// style
 
 const useStyles = makeStyles((theme) => ({
+    background: {
+        background: 'linear-gradient(45deg, #8C8CF9 30%, #74C7E3 90%)'
+    },
     root: {
         display: 'flex',
         justifyContent: 'center',
@@ -22,21 +31,26 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '100vh',
     },
     card: {
-        width: 345,
+        width: 500,
+        borderRadius: 15,
+        boxShadow: '-8px 8px 25px 10px #73FAF8',
     },
     media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
+        width:300,
+        height:257,
+        marginTop: 16,
+        marginBottom: 16,
+        margin: 'auto',
     },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
+    heading: {
+        marginTop: 10
     },
-    expandOpen: {
-        transform: 'rotate(180deg)',
+    center: {
+        display: 'flex',
+        justifyContent: 'center',
+    },
+    loginButton: {
+        width: 200,
     },
 }));
 
@@ -45,21 +59,54 @@ export default function Landing(props)
 {
     const classes = useStyles();
     return (
-        <>
+        <div className={classes.background}>
             <Container>
                 <div className={classes.root}>
-                    <Card className={classes.card}>
-                        <CardHeader
-                            action={
-                                <Account {...props} />
-                            }
-                        />
+                    <Card
+                        
+                        className={classes.card}
+                    >
                         <CardContent>
-                            로그인하여 서비스 이용
+
+                        </CardContent>
+                        <CardMedia
+                            className={classes.media}
+                            image="images/auto_sql_logo.png"
+                            title="AutoSQL"
+                        />
+                        <CardContent className={classes.center}>
+                            <Typography variant="h6" display="block" gutterBottom
+                                className={classes.heading}
+                            >
+                                수많은 DBMS를 위한 단 하나의 도구
+                            </Typography>
+                            
+                        </CardContent>
+                        <CardContent className={classes.center}>
+                            <Typography variant="caption" display="block" gutterBottom
+                                    className={classes.heading}
+                                >
+                                {
+                                    Store.getState().User.accessToken ? 
+                                    () => {
+                                        return (<Chip
+                                            label="AutoSQL 사용하기"
+                                            onClick={() => {
+                                                history.push('/dashboard')
+                                            }}
+                                        />)
+                                    } 
+                                    : 
+                                    "로그인하여 사용하기"
+                                }
+                            </Typography>
+                        </CardContent>
+                        <CardContent className={classes.loginButton, classes.center}>
+                            <Account {...props} />
                         </CardContent>
                     </Card>
                 </div>
             </Container>
-        </>
+        </div>
     );
 }

@@ -1,7 +1,7 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 
 // for redux
-import {Store} from 'Store'
+import { Store } from 'Store'
 
 // components
 import GenerateVuerd from 'components/Dashboard/generateVuerd'
@@ -14,22 +14,92 @@ import DrawerItemErdList from "components/Dashboard/DashBoardComponents/DrawerIt
 import ModalItemSaveButton from 'components/Dashboard/DashBoardComponents/ModalItemSaveButton'
 import DrawerItemCommits from 'components/Dashboard/DashBoardComponents/DrawerItemCommits'
 
+// material-ui
+import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from '@material-ui/core/styles';
+
+import Fab from '@material-ui/core/Fab';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
+import BuildIcon from '@material-ui/icons/Build';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
+import SaveIcon from '@material-ui/icons/Save';
+import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
+
+// 3rd-party
+import Draggable from 'react-draggable'
+
 // style
 import './index.css'
 
-export default function Dashboard(props)
-{
-    const [erdData, setErdData] = useState({});
+const useStyles = makeStyles((theme) => ({
+    extendedIcon: {
+        marginRight: theme.spacing(1),
+    },
+    FloatingButton: {
+        zIndex: 999,
+        width: '60px',
+        height: '40px',
+    },
+}));
 
-    useEffect(() => {
-        console.log("============================================================")
-    }, [])
+const StyledMenu = withStyles({
+    paper: {
+        border: '1px solid #d3d4d5',
+    },
+})((props) => (
+    <Menu
+        elevation={0}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+        }}
+        transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+        }}
+        {...props}
+    />
+));
+
+const StyledMenuItem = withStyles((theme) => ({
+    root: {
+        '&:hover': {
+            backgroundColor: theme.palette.primary.main,
+        },
+    },
+}))(MenuItem);
+
+export default function Dashboard(props) {
+    // for redux
+    const [erdData, setErdData] = useState({});
 
     useLayoutEffect(() => {
         setErdData(Store.getState().ErdData.erdData)
         // console.log('DashBoard index - setErdData')
         // console.dir(erdData)
     }, [Store.getState().ErdData.erdData])
+
+    //style
+    const classes = useStyles();
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [dragging, setDragging] = useState(false);
+
+    const handleClick = (event) => {
+        if (!dragging)
+            setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
 
     return (
         <>
@@ -38,39 +108,77 @@ export default function Dashboard(props)
                 backgroundColor: '#333333',
                 display: 'flex'
             }}>
-                <div>
-                    <img src="/images/logo.png"
-                         height="45px"
-                    />
-                </div>
-                <div className="dashboard-buttons">
-                    <DashBoardModalButton
-                        component={ModalItemNewErd}
+                <Draggable
+                    defaultPosition={{ x: 100, y: 120 }}
+                    scale={1}
+                    position={null}
+                    onDrag={() => {
+                        setDragging(true)
+                    }}
+                    onStop={() => {
+                        setTimeout(() => {
+                            setDragging(false)
+                        }, 200);
+                    }}
+                >
+                    <Fab
+                        variant="extended"
+                        size="medium"
+                        color="primary"
+                        aria-label="add"
+                        className={classes.margin, classes.FloatingButton}
+                        onClick={handleClick}
                     >
-                        새 ERD
-                    </DashBoardModalButton>
-                    <DashBoardModalButton
-                        component={ModalItemSaveButton}
-                    >
-                        저장하기
-                    </DashBoardModalButton>
-                    <DashBoardDrawerButton
-                        DrawerWidth="300px"
-                        DrawerPosition="left"
-                        component={DrawerItemErdList}
-                        onSetFunction={setErdData}
-                    >
-                        ERD
-                    </DashBoardDrawerButton>
-                    <DashBoardDrawerButton
-                        DrawerWidth="500px"
-                        DrawerPosition="right"
-                        component={DrawerItemCommits}
-                        onSetFunction={setErdData}
-                    >
-                        변경사항
-                    </DashBoardDrawerButton>
-                </div>
+                        <BuildIcon className={classes.extendedIcon} />
+                        작업
+                    </Fab>
+                </Draggable>
+                <StyledMenu
+                    id="customized-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
+                    <StyledMenuItem>
+                        <DashBoardModalButton
+                            component={ModalItemNewErd}
+                            Icon={<AddBoxIcon fontSize="small" />}
+                        >
+                            새로작성
+                        </DashBoardModalButton>
+                    </StyledMenuItem>
+                    <StyledMenuItem>
+                        <DashBoardDrawerButton
+                            DrawerWidth="300px"
+                            DrawerPosition="left"
+                            component={DrawerItemErdList}
+                            onSetFunction={setErdData}
+                            Icon={<SystemUpdateAltIcon fontSize="small" />}
+                        >
+                            불러오기
+                        </DashBoardDrawerButton>
+                    </StyledMenuItem>
+                    <StyledMenuItem>
+                        <DashBoardModalButton
+                            component={ModalItemSaveButton}
+                            Icon={<SaveIcon fontSize="small" />}
+                        >
+                            저장하기
+                        </DashBoardModalButton>
+                    </StyledMenuItem>
+                    <StyledMenuItem>
+                        <DashBoardDrawerButton
+                            DrawerWidth="500px"
+                            DrawerPosition="right"
+                            component={DrawerItemCommits}
+                            onSetFunction={setErdData}
+                            Icon={<SettingsBackupRestoreIcon fontSize="small" />}
+                        >
+                            변경사항
+                        </DashBoardDrawerButton>
+                    </StyledMenuItem>
+                </StyledMenu>
             </header>
             <div style={{
                 height: '100%'

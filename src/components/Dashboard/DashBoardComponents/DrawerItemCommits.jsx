@@ -11,7 +11,6 @@ import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 import {Typography} from "@material-ui/core";
 
-import Paper from "@material-ui/core/Paper";
 import Chip from "@material-ui/core/Chip"
 import FaceIcon from '@material-ui/icons/Face';
 
