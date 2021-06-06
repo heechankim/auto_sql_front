@@ -12,9 +12,6 @@ export default function DashBoardDrawer(props)
         <Drawer
             anchor={props.DrawerPosition}
             open={open}
-            style={{
-                zIndex: 3000
-            }}
             onClose={() => {
                 setOpen(false)
             }}

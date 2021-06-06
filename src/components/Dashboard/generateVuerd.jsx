@@ -7,6 +7,7 @@ import {assignCurrentErd} from 'Store/VuerdData'
 
 // 3rd-party
 import 'vuerd'
+//import 'vuerd/theme/auto-sql.css'
 import 'vuerd/theme/vscode-dark.css'
 
 const GenerateVuerd = (props) => {

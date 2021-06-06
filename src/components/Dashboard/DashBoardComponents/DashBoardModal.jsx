@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        zIndex: 941206,
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
@@ -45,7 +46,10 @@ export default function DashBoardModal(props)
                 timeout: 500,
             }}
         >
-            <Fade in={open}>
+            <Fade 
+                
+                in={open}
+            >
                 <div className={classes.paper}>
                     <h2 id="dashboard-modal-title">{props.title}</h2>
                     {props.children}
