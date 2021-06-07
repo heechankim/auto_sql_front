@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 
 // components
 import GoogleLoginButton from "./GoogleLoginButton";
@@ -13,7 +13,11 @@ import {onGoogleLogin} from "Store/User";
 
 const Account = (props) => {
 
-    const [isLogin, setIsLogin] = useState(false)
+    // state from landing index.js
+    //const [isLogin, setIsLogin] = useState(false)
+    
+    const isLogin = props.isLogin
+    const setIsLogin = props.setIsLogin
 
     useEffect(() => {
         if (Store.getState().User.id) {

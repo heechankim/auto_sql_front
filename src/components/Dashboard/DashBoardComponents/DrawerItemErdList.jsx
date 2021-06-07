@@ -15,12 +15,13 @@ import Button from '@material-ui/core/Button'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
 // functions
-import {GetErd, GetErdList, GetErdTimeLine} from "Functions/Erd";
+import {GetErd, GetErdList, GetErdTimeLine, GetErdForce} from "Functions/Erd";
 
 function DrawerItemErdList(props)
 {
     const {onWorkingErd} = props
     const {onSetFunction} = props
+    const {onClose} = props
 
     const [list, setList] = useState([])
 
@@ -34,22 +35,12 @@ function DrawerItemErdList(props)
     const onLoadButtonClick = (_erdId, _erdName) => {
         let _commitId;
         let _erdData;
-        let getErdTimeLinePromise = GetErdTimeLine(_erdName)
+        let getErdForcePromise = GetErdForce(_erdId)
             .then((result) => {
-                // console.log('after GetErdTimeLine')
-                //console.log(result)
-                const commitArray = result.data.result;
-                //console.log(commitArray[0].commitId) -> 26
-                _commitId = commitArray[0].commitId
-                return GetErd(_erdId, _commitId)
-            })
-            .then((result) => {
-                // console.log('after GetErd')
-                //console.log(result)
-                // console.log('GetErd data')
-                //console.log(result.data.result[0].data)
-                _erdData = result.data.result[0].data;
-
+                let forceData = result.data.result
+                _commitId = forceData.commitId
+                _erdData = forceData.erdData
+                
                 let payload = {
                     erdId: _erdId,
                     erdName: _erdName,
@@ -58,7 +49,34 @@ function DrawerItemErdList(props)
                 }
                 onWorkingErd(payload)
                 onSetFunction(_erdData)
+                onClose()
             })
+
+        // let getErdTimeLinePromise = GetErdTimeLine(_erdName)
+        //     .then((result) => {
+        //         // console.log('after GetErdTimeLine')
+        //         //console.log(result)
+        //         const commitArray = result.data.result;
+        //         //console.log(commitArray[0].commitId) -> 26
+        //         _commitId = commitArray[0].commitId
+        //         return GetErd(_erdId, _commitId)
+        //     })
+        //     .then((result) => {
+        //         // console.log('after GetErd')
+        //         //console.log(result)
+        //         // console.log('GetErd data')
+        //         //console.log(result.data.result[0].data)
+        //         _erdData = result.data.result[0].data;
+
+        //         let payload = {
+        //             erdId: _erdId,
+        //             erdName: _erdName,
+        //             commitId: _commitId,
+        //             erdData: _erdData,
+        //         }
+        //         onWorkingErd(payload)
+        //         onSetFunction(_erdData)
+        //     })
     }
     return (
         <Container>

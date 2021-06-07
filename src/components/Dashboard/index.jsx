@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 999,
         width: '60px',
         height: '40px',
+        boxShadow: '-0px 0px 10px 2px #73FAF8',
     },
 }));
 

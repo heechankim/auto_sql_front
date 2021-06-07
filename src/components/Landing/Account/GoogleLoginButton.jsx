@@ -5,6 +5,7 @@ import {useGoogleLogin} from 'react-google-login'
 
 // material-ui
 import Button from "@material-ui/core/Button";
+import Avatar from '@material-ui/core/Avatar';
 
 // functions
 import {CreateUser, HashEmail} from 'Functions'
@@ -86,10 +87,12 @@ export default function GoogleLoginButton({onLogin, isLogin})
     return (
         <Button
             variant="contained"
-            color="primary"
             onClick={signIn}
+            style={{
+                backgroundColor: '#FFFFFF'
+            }}
         >
-            로그인
+            <Avatar src="/images/google_icon.png" />
         </Button>
     );
 }

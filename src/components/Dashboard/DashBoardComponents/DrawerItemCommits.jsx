@@ -49,6 +49,7 @@ function DrawerItemCommits(props)
 {
     const [primaryIndex, setPrimaryIndex] = useState(0);
 
+    const {onClose} = props
 
     //for erd
     const {onWorkingErd} = props
@@ -92,6 +93,7 @@ function DrawerItemCommits(props)
                     }
                     onWorkingErd(payload)
                     onSetFunction(_erdData)
+                    onClose()
                 }
                 
             })

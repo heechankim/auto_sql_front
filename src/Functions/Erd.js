@@ -11,6 +11,7 @@ export function CreateErd(_erdName)
         JSON.stringify(data),
         {
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
@@ -34,11 +35,14 @@ export async function GetErdList()
     return await axios.get(process.env.REACT_APP_SERVER + "erd/list",
         {
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
                 'Authorization': GetUserAccessToken(),
-            }
+            },
+            maxContentLength: 100000000,
+            maxBodyLength: 1000000000
         }
     )
 }
@@ -49,11 +53,14 @@ export async function GetErdTimeLine(_erdName)
     return await axios.get(process.env.REACT_APP_SERVER + 'commit/' + _erdName,
         {
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
                 'Authorization': GetUserAccessToken(),
-            }
+            },
+            maxContentLength: 100000000,
+            maxBodyLength: 1000000000
         }
     )
 }
@@ -64,11 +71,32 @@ export async function GetErd(_erdId, _commitId)
     return await axios.get(process.env.REACT_APP_SERVER + 'erd/' + _erdId + '/' + _commitId,
         {
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
                 'Authorization': GetUserAccessToken(),
-            }
+            },
+            maxContentLength: 100000000,
+            maxBodyLength: 1000000000
+        }
+    )
+}
+export async function GetErdForce(_erdId)
+{
+    let axios = require('axios')
+
+    return await axios.get(process.env.REACT_APP_SERVER + 'erd/' + _erdId + '/force',
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': GetUserAccessToken(),
+            },
+            maxContentLength: 100000000,
+            maxBodyLength: 1000000000
         }
     )
 }
@@ -87,11 +115,14 @@ export async function SaveErd(_erdName, _data)
         JSON.stringify(data),
         {
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
                 'Authorization': token,
-            }
+            },
+            maxContentLength: 100000000,
+            maxBodyLength: 1000000000
         }
     );
     console.log(response)

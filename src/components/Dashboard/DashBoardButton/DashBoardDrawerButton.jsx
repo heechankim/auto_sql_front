@@ -40,6 +40,9 @@ export default function DashBoardDrawerButton(props)
             >
                 <Component
                     onSetFunction={props.onSetFunction}
+                    onClose={() => {
+                        setOpen(false)
+                    }}
                 />
             </DashBoardDrawer>
         </>
