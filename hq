@@ -1,0 +1,176 @@
+[33mcommit 7066aa6203bce135367b9216fd96d8d9d7635195[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sat Jun 19 21:04:34 2021 +0000
+
+    공유기능 구현
+
+[33mcommit 9e335bffbbff3e0531b336549d273855f5da36f5[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sat Jun 19 17:29:16 2021 +0000
+
+    뱃지 카운트 기능 완성git add .
+
+[33mcommit 2eeb14c2f39fa9e7ff9f8030bddf0322068e9c98[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sat Jun 19 16:48:35 2021 +0000
+
+    뱃지 카운트 기능 1
+
+[33mcommit a4fd2533b4d0c4656fe0b9661560bb874976e123[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sat Jun 19 08:13:15 2021 +0000
+
+    시연 후 에러 최종 수정본 ***
+
+[33mcommit d7c554c23960e000ec5bff85e44abc98d1d9a584[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sat Jun 19 07:58:18 2021 +0000
+
+    일단 커밋해
+
+[33mcommit bb500849f54b049e8699b070034b1f2648c76813[m
+Author: CharmingKyu <loadkrnis@gmail.com>
+Date:   Tue Jun 8 20:19:59 2021 +0900
+
+    add: Build production
+
+[33mcommit 3aca623b01ac512acde22d65899841283f0b86b5[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Mon Jun 7 08:17:52 2021 +0000
+
+    교수님시연 프론트 작업완성본
+
+[33mcommit 7bceca4ddb8bb80b4de13c9180628a5cfe838735[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 21:59:32 2021 +0000
+
+    modify: commit list reverse
+
+[33mcommit 716be7e12690c31f71e1c1a05fd43d65e9964d4b[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 21:45:38 2021 +0000
+
+    add: profile img
+
+[33mcommit c9281292516b7367bf05947b736961073a2dc8ab[m
+Merge: 1135ed1 9e047c1
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 21:07:27 2021 +0000
+
+    Merge branch 'master' of https://github.com/chandaley12/auto_sql_front_v2
+
+[33mcommit 1135ed1eca801cf71f9a1a87d56064dfa3b81718[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 21:06:45 2021 +0000
+
+    기능, 디자인 1차 완성본
+
+[33mcommit 9e047c1e1c86a856708367f94d59a6271a95c1a7[m
+Merge: 0bf9e12 0f7a8fc
+Author: CharmingKyu <loadkrnis@gmail.com>
+Date:   Mon Jun 7 05:49:16 2021 +0900
+
+    Merge branch 'master' of https://github.com/chandaley12/auto_sql_front_v2
+
+[33mcommit 0bf9e12e6d7b06a615d3d1c8e1738b09d581adb9[m
+Author: CharmingKyu <loadkrnis@gmail.com>
+Date:   Mon Jun 7 05:49:02 2021 +0900
+
+    feat: Complete landing page
+
+[33mcommit 0f7a8fcccf6775f6c1f470501a10fd2e55f4d454[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 20:46:35 2021 +0000
+
+    feat: Complete landing page
+
+[33mcommit 7a61ad8f32c0b3d5f567bcbd910b58588702bd03[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 19:28:39 2021 +0000
+
+    플로팅 버튼 ㅈ같노
+
+[33mcommit 78cc972f300bab6f3d2577e1764e253146c5fa9e[m
+Author: CharmingKyu <loadkrnis@gmail.com>
+Date:   Mon Jun 7 04:24:16 2021 +0900
+
+    modfiy: landing.html style2
+
+[33mcommit 9e8525a0ba27f95d52ac1ec6e22686a3145ec71e[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 17:46:18 2021 +0000
+
+    modify: landing.html
+
+[33mcommit 4c5e29048ac6a320bd4b2ffeda755438bfe8cb1e[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 12:59:18 2021 +0000
+
+    gitignore 최종수정
+
+[33mcommit 65d0c863a60982b28bdaca813635aa693f4889a6[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 12:57:42 2021 +0000
+
+    gitignore 수정4
+
+[33mcommit 4b69f3f9e3c113a7f57964669869af1d28614a07[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 12:57:01 2021 +0000
+
+    gitignore 수정3
+
+[33mcommit 22d5c1c374d7059495465fb7acfba42273769b0f[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 12:54:44 2021 +0000
+
+    gitignore 수정2
+
+[33mcommit 299691ec84995fc9ac04acadaf866d431d8482a7[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 12:50:57 2021 +0000
+
+    gitignore 수정
+
+[33mcommit 9719b08ff83dfdc2e1c648297103d03f8ee5016c[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 12:46:25 2021 +0000
+
+    기능 최종 버전
+
+[33mcommit 1f436f38ab44d98448bf2e7963678ed65d31a972[m
+Merge: 1b07b59 1e5ceb6
+Author: CharmingKyu <loadkrnis@gmail.com>
+Date:   Sun Jun 6 21:40:48 2021 +0900
+
+    Merge branch 'master' of https://github.com/chandaley12/auto_sql_front_v2
+
+[33mcommit 1b07b59ac7fcbd87649d97756713ec78e688604d[m
+Author: charmingKyu <loadkrnis@gmail.com>
+Date:   Sun Jun 6 21:34:37 2021 +0900
+
+    modify: Landing style
+
+[33mcommit 1e5ceb6b2be96947c4837a5611aeb3732a1026f3[m
+Author: CharmingKyu <loadkrnis@gmail.com>
+Date:   Sun Jun 6 10:18:20 2021 +0000
+
+    저장도 되고 랜딩페이지도 빼놨고 뒤지는줄
+
+[33mcommit 98d099abc1b6bc3c531120cb3c1ad20192f28fff[m
+Author: CharmingKyu <loadkrnis@gmail.com>
+Date:   Sun Jun 6 09:56:59 2021 +0000
+
+    2021-06-06 1900
+
+[33mcommit 55fdbf3b3cc4d22bc801cd8e1dcba9c5fd135d99[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 01:53:34 2021 +0900
+
+    잠깐 수정
+
+[33mcommit c39d9d1018390b8971cdfe45c92470ba1c4ed1d7[m
+Author: chandaley12 <chandaley12@gmail.com>
+Date:   Sun Jun 6 01:38:34 2021 +0900
+
+    오토 sql 버전 2

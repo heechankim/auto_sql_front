@@ -126,3 +126,45 @@ export async function SaveErd(_erdName, _data, _owner_id)
     );
     return response
 }
+export async function DeleteErd(_erdId)
+{
+    let axios = require('axios')
+
+    return await axios.delete(process.env.REACT_APP_SERVER + 'erd/' + _erdId,
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': GetUserAccessToken(),
+            },
+            maxContentLength: 100000000,
+            maxBodyLength: 1000000000
+        }
+    )
+}
+export async function SharedErd(_erdId, _erdName, _sharedName, _teamList)
+{
+    let axios = require('axios')
+
+    let data = {
+        erd_id: _erdId,
+        shared_name: _sharedName,
+        team_list: _teamList,
+    }
+    return await axios.post(process.env.REACT_APP_SERVER + 'shared/' + _erdName,
+        JSON.stringify(data),
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': GetUserAccessToken(),
+            },
+            maxContentLength: 100000000,
+            maxBodyLength: 1000000000
+        }
+    )
+}

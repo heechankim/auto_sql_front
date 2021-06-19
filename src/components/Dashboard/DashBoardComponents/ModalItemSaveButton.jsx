@@ -59,10 +59,16 @@ function ModalItemSaveButton(props)
     }, [])
 
     return (
-        <>
+        <div
+            style={{
+                width: '400px',
+                height: '180px',
+            }}
+        >
             <div style={{
                 display: 'flex',
                 justifyContent: 'center',
+                marginBottom: '50px',
             }}>
                 {text}
             </div>
@@ -73,7 +79,7 @@ function ModalItemSaveButton(props)
             }}>
                 <CircularProgress color="inherit" />
             </div>
-        </>
+        </div>
     );
 }
 const mapToDispatch = (dispatch) => ({

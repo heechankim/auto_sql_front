@@ -13,6 +13,7 @@ import ModalItemNewErd from 'components/Dashboard/DashBoardComponents/ModalItemN
 import DrawerItemErdList from "components/Dashboard/DashBoardComponents/DrawerItemErdList";
 import ModalItemSaveButton from 'components/Dashboard/DashBoardComponents/ModalItemSaveButton'
 import DrawerItemCommits from 'components/Dashboard/DashBoardComponents/DrawerItemCommits'
+import ModalItemSharedButton from "components/Dashboard/DashBoardComponents/ModalItemSharedButton";
 
 // material-ui
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,8 +31,10 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 import SaveIcon from '@material-ui/icons/Save';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
+import ShareIcon from '@material-ui/icons/Share';
 
 import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider';
 
 // 3rd-party
 import Draggable from 'react-draggable'
@@ -168,6 +171,7 @@ export default function Dashboard(props) {
                             새로작성
                         </DashBoardModalButton>
                     </StyledMenuItem>
+                    <Divider/>
                     <StyledMenuItem>
                         <DashBoardDrawerButton
                             DrawerWidth="300px"
@@ -179,6 +183,7 @@ export default function Dashboard(props) {
                             불러오기
                         </DashBoardDrawerButton>
                     </StyledMenuItem>
+                    <Divider/>
                     <StyledMenuItem>
                         <DashBoardModalButton
                             component={ModalItemSaveButton}
@@ -188,6 +193,7 @@ export default function Dashboard(props) {
                             저장하기
                         </DashBoardModalButton>
                     </StyledMenuItem>
+                    <Divider/>
                     <StyledMenuItem>
                         <DashBoardDrawerButton
                             DrawerWidth="500px"
@@ -198,6 +204,16 @@ export default function Dashboard(props) {
                         >
                             변경사항
                         </DashBoardDrawerButton>
+                    </StyledMenuItem>
+                    <Divider/>
+                    <StyledMenuItem>
+                        <DashBoardModalButton
+                            component={ModalItemSharedButton}
+                            onSetFunction={setErdData}
+                            Icon={<ShareIcon fontSize="small" />}
+                        >
+                            공유하기
+                        </DashBoardModalButton>
                     </StyledMenuItem>
                 </StyledMenu>
             </header>
