@@ -12,7 +12,7 @@ import 'vuerd/theme/auto-sql.css'
 
 const GenerateVuerd = (props) => {
 
-    const {erdData} = props;
+    let {erdData} = props;
     const {erdName} = props;
     const {onCurrentErd} = props;
 
@@ -38,11 +38,23 @@ const GenerateVuerd = (props) => {
         }
         onCurrentErd(payload);
 
+        // databaseName에 erdName 집어 넣기!!!!!
+        if(erdData.canvas)
+        {
+            erdData.canvas.databaseName = erdName
+        }
+        else
+        {
+            if(Object.keys(erdData).length !== 0)
+            {
+                let erdDataJson = JSON.parse(erdData)
+                erdDataJson.canvas.databaseName = erdName
+                erdData = JSON.stringify(erdDataJson)
+            }
+        }
         const data = erdData
+
         editor.initLoadJson(data)
-        console.log(erdName)
-        //editor.value.databaseName = erdName;
-        console.dir(editor.context.store)
 
         window.addEventListener("resize", () => {
             editor.width = container.parentElement.clientWidth;

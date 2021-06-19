@@ -36,6 +36,12 @@ import ShareIcon from '@material-ui/icons/Share';
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider';
 
+
+import SpeedDial from '@material-ui/lab/SpeedDial';
+import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
+
+
 // 3rd-party
 import Draggable from 'react-draggable'
 
@@ -46,10 +52,20 @@ const useStyles = makeStyles((theme) => ({
     extendedIcon: {
         marginRight: theme.spacing(1),
     },
-    FloatingButton: {
+
+    root: {
+        height: 380,
+        transform: 'translateZ(0px)',
+        flexGrow: 1,
+    },
+    speedDial: {
+        position: 'absolute',
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+
         zIndex: 999,
-        width: '60px',
-        height: '40px',
+        width: '100%',
+        height: '100%',
         boxShadow: '-0px 0px 10px 2px #73FAF8',
     },
 }));
@@ -97,6 +113,15 @@ export default function Dashboard(props) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [dragging, setDragging] = useState(false);
 
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const onMenuOpen = () => {
+        setMenuOpen(true);
+    }
+    const onMenuClose = () => {
+        setMenuOpen(false);
+    }
+
     const handleClick = (event) => {
         if (!dragging)
             setAnchorEl(event.currentTarget);
@@ -141,81 +166,155 @@ export default function Dashboard(props) {
                             setDragging(false)
                         }, 200);
                     }}
+                    
                 >
-                    <Fab
-                        variant="extended"
-                        size="medium"
-                        color="primary"
-                        aria-label="add"
-                        className={classes.margin, classes.FloatingButton}
-                        onClick={handleClick}
+                    {/*<Fab*/}
+                    {/*    variant="extended"*/}
+                    {/*    size="medium"*/}
+                    {/*    color="primary"*/}
+                    {/*    aria-label="add"*/}
+                    {/*    className={classes.margin, classes.FloatingButton}*/}
+                    {/*    onClick={handleClick}*/}
+                    {/*>*/}
+                    {/*    <BuildIcon className={classes.extendedIcon} />*/}
+                    {/*    작업*/}
+                    {/*</Fab>*/}
+                    <SpeedDial
+                        style={{
+                            width: '50px',
+                            height: '50px',
+                        }}
+                        ariaLabel="SpeedDial openIcon example"
+                        icon={<BuildIcon fontSize="small" />}
+                        className={classes.speedDial, classes.FloatingButton}
+                        onClose={onMenuClose}
+                        onOpen={onMenuOpen}
+                        open={menuOpen}
+                        direction="down"
                     >
-                        <BuildIcon className={classes.extendedIcon} />
-                        작업
-                    </Fab>
+                        <SpeedDialAction
+                            key="새로작성"
+                            icon={<DashBoardModalButton
+                                component={ModalItemNewErd}
+                                ComponentTitle="새로작성"
+                                onSetFunction={setErdData}
+                                Icon={<AddBoxIcon/>}
+                            />}
+                            tooltipTitle="새로작성"
+                            tooltipOpen
+                        />
+                        <SpeedDialAction
+                            key="불러오기"
+                            icon={<DashBoardDrawerButton
+                                DrawerWidth="300px"
+                                DrawerPosition="left"
+                                component={DrawerItemErdList}
+                                ComponentTitle="불러오기"
+                                onSetFunction={setErdData}
+                                Icon={<SystemUpdateAltIcon/>}
+                            />}
+                            tooltipTitle="불러오기"
+                            tooltipOpen
+                        />
+                        <SpeedDialAction
+                            key="저장하기"
+                            icon={<DashBoardModalButton
+                                component={ModalItemSaveButton}
+                                ComponentTitle="저장하기"
+                                onSetFunction={setErdData}
+                                Icon={<SaveIcon/>}
+                            />}
+                            tooltipTitle="저장하기"
+                            tooltipOpen
+                        />
+                        <SpeedDialAction
+                            key="변경사항"
+                            icon={<DashBoardDrawerButton
+                                DrawerWidth="500px"
+                                DrawerPosition="right"
+                                component={DrawerItemCommits}
+                                ComponentTitle="변경사항"
+                                onSetFunction={setErdData}
+                                Icon={<SettingsBackupRestoreIcon/>}
+                            />}
+                            tooltipTitle="변경사항"
+                            tooltipOpen
+                        />
+                        <SpeedDialAction
+                            key="공유하기"
+                            icon={<DashBoardModalButton
+                                component={ModalItemSharedButton}
+                                ComponentTitle="공유사항"
+                                onSetFunction={setErdData}
+                                Icon={<ShareIcon/>}
+                            />}
+                            tooltipTitle="공유하기"
+                            tooltipOpen
+                        />
+                    </SpeedDial>
                 </Draggable>
-                <StyledMenu
+                {/*<StyledMenu*/}
                 
-                    id="customized-menu"
-                    anchorEl={anchorEl}
-                    keepMounted
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                >
-                    <StyledMenuItem>
-                        <DashBoardModalButton
-                            component={ModalItemNewErd}
-                            onSetFunction={setErdData}
-                            Icon={<AddBoxIcon fontSize="small" />}
-                        >
-                            새로작성
-                        </DashBoardModalButton>
-                    </StyledMenuItem>
-                    <Divider/>
-                    <StyledMenuItem>
-                        <DashBoardDrawerButton
-                            DrawerWidth="300px"
-                            DrawerPosition="left"
-                            component={DrawerItemErdList}
-                            onSetFunction={setErdData}
-                            Icon={<SystemUpdateAltIcon fontSize="small" />}
-                        >
-                            불러오기
-                        </DashBoardDrawerButton>
-                    </StyledMenuItem>
-                    <Divider/>
-                    <StyledMenuItem>
-                        <DashBoardModalButton
-                            component={ModalItemSaveButton}
-                            onSetFunction={setErdData}
-                            Icon={<SaveIcon fontSize="small" />}
-                        >
-                            저장하기
-                        </DashBoardModalButton>
-                    </StyledMenuItem>
-                    <Divider/>
-                    <StyledMenuItem>
-                        <DashBoardDrawerButton
-                            DrawerWidth="500px"
-                            DrawerPosition="right"
-                            component={DrawerItemCommits}
-                            onSetFunction={setErdData}
-                            Icon={<SettingsBackupRestoreIcon fontSize="small" />}
-                        >
-                            변경사항
-                        </DashBoardDrawerButton>
-                    </StyledMenuItem>
-                    <Divider/>
-                    <StyledMenuItem>
-                        <DashBoardModalButton
-                            component={ModalItemSharedButton}
-                            onSetFunction={setErdData}
-                            Icon={<ShareIcon fontSize="small" />}
-                        >
-                            공유하기
-                        </DashBoardModalButton>
-                    </StyledMenuItem>
-                </StyledMenu>
+                {/*    id="customized-menu"*/}
+                {/*    anchorEl={anchorEl}*/}
+                {/*    keepMounted*/}
+                {/*    open={Boolean(anchorEl)}*/}
+                {/*    onClose={handleClose}*/}
+                {/*>*/}
+                {/*    <StyledMenuItem>*/}
+                {/*        <DashBoardModalButton*/}
+                {/*            component={ModalItemNewErd}*/}
+                {/*            onSetFunction={setErdData}*/}
+                {/*            Icon={<AddBoxIcon fontSize="small" />}*/}
+                {/*        >*/}
+                {/*            새로작성*/}
+                {/*        </DashBoardModalButton>*/}
+                {/*    </StyledMenuItem>*/}
+                {/*    <Divider/>*/}
+                {/*    <StyledMenuItem>*/}
+                {/*        <DashBoardDrawerButton*/}
+                {/*            DrawerWidth="300px"*/}
+                {/*            DrawerPosition="left"*/}
+                {/*            component={DrawerItemErdList}*/}
+                {/*            onSetFunction={setErdData}*/}
+                {/*            Icon={<SystemUpdateAltIcon fontSize="small" />}*/}
+                {/*        >*/}
+                {/*            불러오기*/}
+                {/*        </DashBoardDrawerButton>*/}
+                {/*    </StyledMenuItem>*/}
+                {/*    <Divider/>*/}
+                {/*    <StyledMenuItem>*/}
+                {/*        <DashBoardModalButton*/}
+                {/*            component={ModalItemSaveButton}*/}
+                {/*            onSetFunction={setErdData}*/}
+                {/*            Icon={<SaveIcon fontSize="small" />}*/}
+                {/*        >*/}
+                {/*            저장하기*/}
+                {/*        </DashBoardModalButton>*/}
+                {/*    </StyledMenuItem>*/}
+                {/*    <Divider/>*/}
+                {/*    <StyledMenuItem>*/}
+                {/*        <DashBoardDrawerButton*/}
+                {/*            DrawerWidth="500px"*/}
+                {/*            DrawerPosition="right"*/}
+                {/*            component={DrawerItemCommits}*/}
+                {/*            onSetFunction={setErdData}*/}
+                {/*            Icon={<SettingsBackupRestoreIcon fontSize="small" />}*/}
+                {/*        >*/}
+                {/*            변경사항*/}
+                {/*        </DashBoardDrawerButton>*/}
+                {/*    </StyledMenuItem>*/}
+                {/*    <Divider/>*/}
+                {/*    <StyledMenuItem>*/}
+                {/*        <DashBoardModalButton*/}
+                {/*            component={ModalItemSharedButton}*/}
+                {/*            onSetFunction={setErdData}*/}
+                {/*            Icon={<ShareIcon fontSize="small" />}*/}
+                {/*        >*/}
+                {/*            공유하기*/}
+                {/*        </DashBoardModalButton>*/}
+                {/*    </StyledMenuItem>*/}
+                {/*</StyledMenu>*/}
             </header>
             <div style={{
                 height: '100%'

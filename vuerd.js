@@ -19976,22 +19976,22 @@ var vuerd = (function (exports) {
         if (el) {
             domToImage.toBlob(el).then((blob) => {
                 executeExport(blob, (name === null || name === void 0 ? void 0 : name.trim()) === ""
-                    ? `unnamed-${new Date().getTime()}.png`
-                    : `${name}-${new Date().getTime()}.png`);
+                    ? `autosql-${new Date().getFullYear()+"년"+new Date().getMonth()+"월"+new Date().getDate()+"일"+"_"+new Date().getHours()+"시"+new Date().getMinutes()+"분"+new Date().getSeconds()+"초"}_autosql.png`
+                    : `${name}-${new Date().getFullYear()+"년"+new Date().getMonth()+"월"+new Date().getDate()+"일"+"_"+new Date().getHours()+"시"+new Date().getMinutes()+"분"+new Date().getSeconds()+"초"}_autosql.png`);
             });
         }
     }
     function exportJSON(json, name) {
         const blobJson = new Blob([json], { type: "application/json" });
         executeExport(blobJson, (name === null || name === void 0 ? void 0 : name.trim()) === ""
-            ? `unnamed-${new Date().getTime()}.vuerd.json`
-            : `${name}-${new Date().getTime()}.vuerd.json`);
+            ? `autosql-${new Date().getFullYear()+"년"+new Date().getMonth()+"월"+new Date().getDate()+"일"+"_"+new Date().getHours()+"시"+new Date().getMinutes()+"분"+new Date().getSeconds()+"초"}_autosql.json`
+            : `${name}-${new Date().getFullYear()+"년"+new Date().getMonth()+"월"+new Date().getDate()+"일"+"_"+new Date().getHours()+"시"+new Date().getMinutes()+"분"+new Date().getSeconds()+"초"}_autosql.json`);
     }
     function exportSQLDDL(sql, name) {
         const blobSQL = new Blob([sql]);
         executeExport(blobSQL, (name === null || name === void 0 ? void 0 : name.trim()) === ""
-            ? `unnamed-${new Date().getTime()}.sql`
-            : `${name}-${new Date().getTime()}.sql`);
+            ? `autosql-${new Date().getFullYear()+"년"+new Date().getMonth()+"월"+new Date().getDate()+"일"+"_"+new Date().getHours()+"시"+new Date().getMinutes()+"분"+new Date().getSeconds()+"초"}_autosql.sql`
+            : `${name}-${new Date().getFullYear()+"년"+new Date().getMonth()+"월"+new Date().getDate()+"일"+"_"+new Date().getHours()+"시"+new Date().getMinutes()+"분"+new Date().getSeconds()+"초"}_autosql.sql`);
     }
     function executeExport(blob, fileName) {
         if (exportFileCallback) {

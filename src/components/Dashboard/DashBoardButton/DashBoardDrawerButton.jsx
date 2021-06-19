@@ -9,6 +9,7 @@ export default function DashBoardDrawerButton(props)
 {
     const [open, setOpen] = useState(false);
     const Component = props.component;
+    const {ComponentTitle} = props;
 
     return (
         <>
@@ -24,18 +25,19 @@ export default function DashBoardDrawerButton(props)
             >
                 <span
                     style={{
-                        marginRight: '10px',
+                        display: 'flex',
+                        justifyContent: 'center',
                     }}
                 >
                     {props.Icon}
                 </span>
-                {props.children}
+                {/*{props.children ? props.children : ComponentTitle}*/}
             </div>
             <DashBoardDrawer
                 openHooks={[open, setOpen]}
                 DrawerPosition={props.DrawerPosition}
                 DrawerWidth={props.DrawerWidth}
-                DrawerName={props.children}
+                DrawerName={props.children ? props.children : ComponentTitle}
                 Icon={props.Icon}
             >
                 <Component

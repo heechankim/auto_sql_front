@@ -7,6 +7,7 @@ export default function DashBoardModalButton(props)
 {
     const [open, setOpen] = useState(false);
     const Component = props.component;
+    const {ComponentTitle} = props;
 
     return (
         <>
@@ -23,16 +24,17 @@ export default function DashBoardModalButton(props)
             >
                 <span
                     style={{
-                        marginRight: '10px',
+                        display: 'flex',
+                        justifyContent: 'center',
                     }}
                 >
                     {props.Icon}
                 </span>
-                {props.children}
+                {/*{props.children ? props.children : ComponentTitle}*/}
             </div>
             <DashBoardModal
                 openHooks={[open, setOpen]}
-                title={props.children}
+                title={props.children ? props.children : ComponentTitle}
                 Icon={props.Icon}
             >
                 <Component

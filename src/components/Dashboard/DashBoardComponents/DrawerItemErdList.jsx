@@ -32,6 +32,8 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
+var revert = false;
+
 function DrawerItemErdList(props)
 {
     const {onWorkingErd} = props
@@ -52,7 +54,6 @@ function DrawerItemErdList(props)
         }
         setAlertOpen(false)
     }
-
 
     useLayoutEffect(  () => {
         // Get entire Erd List
@@ -133,18 +134,24 @@ function DrawerItemErdList(props)
                 targetIndex = index
             index++
         })
+        alertClick()
         setTimeout(() => {
-            alertClick()
-            // let getErdForcePromise = DeleteErd(_erdId)
-            //     .then((result) => {
-            //         if(result.data.code === 200)
-            //         {
-            //             console.log(list.slice(0, targetIndex))
-            //             console.log(list.slice(targetIndex + 1, list.length))
-            //             setList(list.slice(0, targetIndex).concat(list.slice(targetIndex + 1, list.length)))
-            //         }
-            //     })
-        }, 600)
+            if(revert === false) {
+                console.log("revert false")
+                let getErdForcePromise = DeleteErd(_erdId)
+                    .then((result) => {
+                        if (result.data.code === 200) {
+                            console.log(list.slice(0, targetIndex))
+                            console.log(list.slice(targetIndex + 1, list.length))
+                            setList(list.slice(0, targetIndex).concat(list.slice(targetIndex + 1, list.length)))
+                        }
+                    })
+            }
+            else {
+                console.log("revert true")
+                revert = false
+            }
+        }, 5300)
 
     }
 
@@ -196,7 +203,7 @@ function DrawerItemErdList(props)
                                                 width:'110px'
                                             }}
                                             variant="contained"
-                                            color="default"
+                                            color="primary"
                                             startIcon={<CloudDownloadIcon/>}
                                             onClick={() => {
                                                 onLoadButtonClick(item.erdId, item.erdName, item.owner_id ? item.owner_id : "")
@@ -212,7 +219,7 @@ function DrawerItemErdList(props)
                                                     width: '110px'
                                                 }}
                                                 variant="contained"
-                                                color="default"
+                                                color="secondary"
                                                 startIcon={<DeleteForeverIcon/>}
                                                 onClick={() => {
                                                     onDeleteButtonClick(item.erdId)
@@ -255,15 +262,25 @@ function DrawerItemErdList(props)
             {/*/>*/}
             <Snackbar
                 open={alertOpen}
-                autoHideDuration={6000}
+                autoHideDuration={5000}
                 onClose={alertClose}
             >
                 <Alert
                     onClose={alertClose}
                     severity="error"
                 >
-                    성공적으로 삭제 되었습니다.
-                    <Button>
+                    삭제하면 되돌릴 수 없습니다.
+                    <Button
+                        style={{
+                            marginLeft: '20px'
+                        }}
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => {
+                            revert = true
+                            alertClose()
+                        }}
+                    >
                         되돌리기
                     </Button>
                 </Alert>

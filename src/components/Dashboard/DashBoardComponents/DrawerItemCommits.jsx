@@ -114,7 +114,9 @@ function DrawerItemCommits(props)
                             </TimelineOppositeContent>
                             <TimelineSeparator>
                                 <TimelineConnector />
-                                <TimelineDot>
+                                <TimelineDot
+                                    color={item.commitId === primaryIndex ? "primary" : "grey"}
+                                >
                                     {item.commitId}
                                 </TimelineDot>
                             </TimelineSeparator>
@@ -130,7 +132,12 @@ function DrawerItemCommits(props)
                                             onLoadButtonClick(item.commitId)
                                         }}
                                     />
-                                    <Typography variant="caption" display="block" gutterBottom>
+                                    <Typography
+                                        variant="caption"
+                                        display="block"
+                                        gutterBottom
+                                        color={item.commitId === primaryIndex ? "primary" : "initial"}
+                                    >
                                         {
                                             LookGoodDate(item.createdAt)
                                         }
