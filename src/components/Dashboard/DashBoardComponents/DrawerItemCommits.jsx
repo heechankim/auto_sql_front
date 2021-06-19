@@ -63,7 +63,7 @@ function DrawerItemCommits(props)
 
     // timeline 생성
     useEffect(() => {
-        GetErdTimeLine(Store.getState().ErdData.erdName)
+        GetErdTimeLine(Store.getState().ErdData.erdName, Store.getState().ErdData.ownerId ? Store.getState().ErdData.ownerId : Store.getState().User.userId)
             .then((result) => {
                 setList(result.data.result);
                 result.data.result.map((item) => {
@@ -84,7 +84,7 @@ function DrawerItemCommits(props)
             .then((result) => {
                 if(result.data.code === 200)
                 {
-                    let _erdData = result.data.result[0].data
+                    let _erdData = result.data.result.data
                     let payload = {
                         erdId: erdId,
                         erdName: erdName,
@@ -95,7 +95,7 @@ function DrawerItemCommits(props)
                     onSetFunction(_erdData)
                     onClose()
                 }
-                
+
             })
     }
 

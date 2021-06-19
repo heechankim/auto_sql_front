@@ -9,6 +9,7 @@ export const initialState = {
     erdName: '',
     commitId: -1,
     erdData: {},
+    ownerId: '',
 };
 
 const ErdDataReducer = handleActions({

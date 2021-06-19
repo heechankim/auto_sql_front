@@ -7,12 +7,13 @@ import {assignCurrentErd} from 'Store/VuerdData'
 
 // 3rd-party
 import 'vuerd'
-//import 'vuerd/theme/auto-sql.css'
-import 'vuerd/theme/vscode-dark.css'
+import 'vuerd/theme/auto-sql.css'
+//import 'vuerd/theme/vscode-dark.css'
 
 const GenerateVuerd = (props) => {
 
     const {erdData} = props;
+    const {erdName} = props;
     const {onCurrentErd} = props;
 
     useLayoutEffect(() => {
@@ -39,6 +40,9 @@ const GenerateVuerd = (props) => {
 
         const data = erdData
         editor.initLoadJson(data)
+        console.log(erdName)
+        //editor.value.databaseName = erdName;
+        console.dir(editor.context.store)
 
         window.addEventListener("resize", () => {
             editor.width = container.parentElement.clientWidth;

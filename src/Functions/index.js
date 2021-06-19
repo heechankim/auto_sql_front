@@ -42,7 +42,6 @@ export async function SigninUser(userId)
     let data = {
         hashedEmail: userId,
     }
-    console.log(data);
     return await axios.get(process.env.REACT_APP_SERVER + 'token/login/' + userId,
         {
             headers: {

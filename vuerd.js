@@ -6826,7 +6826,7 @@ var vuerd = (function (exports) {
     margin-top: ${SIZE_MENUBAR_HEIGHT}px;
     white-space: pre;
     box-sizing: border-box;
-    background-color: #1e1e1e;
+    background-color: #f5f6fa;
     overflow: auto;
     font-family: monospace !important;
     outline: none;
@@ -6865,12 +6865,13 @@ var vuerd = (function (exports) {
     overflow-x: auto;
     padding: 0.5em;
     background: #23241f;
+    font-weight: bold;
   }
 
   .hljs,
   .hljs-tag,
   .hljs-subst {
-    color: #ffffff;
+    color: #000000;
   }
 
   .hljs-strong,
@@ -6880,18 +6881,21 @@ var vuerd = (function (exports) {
 
   .hljs-bullet,
   .hljs-quote,
-  .hljs-number,
   .hljs-regexp,
   .hljs-literal,
   .hljs-link {
-    color: #ae81ff;
+    color: #5391c2;
+  }
+      
+  .hljs-number {
+    color: #dac680;
   }
 
   .hljs-code,
   .hljs-title,
   .hljs-section,
   .hljs-selector-class {
-    color: #a6e22e;
+    color: #0043ff;
   }
 
   .hljs-strong {
@@ -6906,7 +6910,7 @@ var vuerd = (function (exports) {
   .hljs-selector-tag,
   .hljs-name,
   .hljs-attr {
-    color: #f92672;
+    color: #5391c2;
   }
 
   .hljs-symbol,
@@ -6916,7 +6920,7 @@ var vuerd = (function (exports) {
 
   .hljs-params,
   .hljs-class .hljs-title {
-    color: #f8f8f2;
+    color: #000000;
   }
 
   .hljs-string,
@@ -6929,13 +6933,13 @@ var vuerd = (function (exports) {
   .hljs-addition,
   .hljs-variable,
   .hljs-template-variable {
-    color: #e6db74;
+    color: #408e34;
   }
 
   .hljs-comment,
   .hljs-deletion,
   .hljs-meta {
-    color: #75715e;
+    color: #052800;
   }
 `;
 
@@ -22419,13 +22423,13 @@ var vuerd = (function (exports) {
             icon: "project-diagram",
             size: 18,
         },
-        {
-            title: "전체 테이블 보기",
-            canvasType: "Grid",
-            prefix: "fas",
-            icon: "list",
-            size: 18,
-        },
+        // {
+        //     title: "전체 테이블 보기",
+        //     canvasType: "Grid",
+        //     prefix: "fas",
+        //     icon: "list",
+        //     size: 18,
+        // },
         {
             title: "시각화 보기",
             canvasType: "Visualization",
@@ -81568,7 +81572,7 @@ var vuerd = (function (exports) {
             })}
       >
         <div class="vuerd-help-header">
-          <h3>도움</h3>
+          <h3>단축키 모음</h3>
           <vuerd-icon
             class="vuerd-button"
             title=${keymapStop}
@@ -81580,8 +81584,8 @@ var vuerd = (function (exports) {
         <div class="vuerd-help-body vuerd-scrollbar">
           <table>
             <thead>
-              <th>Name</th>
-              <th>Keymap</th>
+              <th>기능</th>
+              <th>단축키</th>
             </thead>
             <tbody>
               ${this.helpDescribe.map((describe) => html `

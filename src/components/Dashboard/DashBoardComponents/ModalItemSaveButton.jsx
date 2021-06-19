@@ -21,17 +21,14 @@ function ModalItemSaveButton(props)
     const {onClose} = props
 
     useEffect(async () => {
-        console.log("========= save button ==========");
         if(Store.getState().ErdData.erdId == -1) {
             setText('선택된 ERD가 존재하지 않습니다.');
             setTimeout(() => {
                 onClose();
             }, 1000);
         }
-        await SaveErd(Store.getState().ErdData.erdName, Store.getState().VuerdData.editor.value)
+        await SaveErd(Store.getState().ErdData.erdName, Store.getState().VuerdData.editor.value, Store.getState().ErdData.ownerId)
             .then((result) => {
-                console.log("SaveErd - then")
-                console.log(result)
                 if(result.data.code === 200)
                 {
                     setText('저장되었습니다.');

@@ -1,0 +1,23 @@
+:root {
+    --vuerd-theme-canvas: #f5f6fa;
+    --vuerd-theme-table: #c4c4c4;
+    --vuerd-theme-table-active: #0b2ebc;
+    --vuerd-theme-focus: #657b83;
+    --vuerd-theme-key-pk: #ffff00;
+    --vuerd-theme-key-fk: #fe8da0;
+    --vuerd-theme-key-pfk: #60b9c4;
+    --vuerd-theme-font: #586e75;
+    --vuerd-theme-font-active: #000000;
+    --vuerd-theme-font-placeholder: rgba(88, 110, 117, 0.67);
+    --vuerd-theme-contextmenu: #d2d2d2;
+    --vuerd-theme-contextmenu-active: #dfca88;
+    --vuerd-theme-edit: #ff0000;
+    --vuerd-theme-column-select: #a8a8a8;
+    --vuerd-theme-column-active: rgb(240 230 199);
+    --vuerd-theme-minimap-shadow: #a8a8a8;
+    --vuerd-theme-scrollbar-thumb: rgba(100, 100, 100, 0.4);
+    --vuerd-theme-scrollbar-thumb-active: rgba(100, 100, 100, 0.7);
+    --vuerd-theme-menubar: #f1f1f6;
+    --vuerd-theme-visualization: #fdf6e3;
+    --vuerd-theme-visualization-column-active: #F0E6C7;
+}

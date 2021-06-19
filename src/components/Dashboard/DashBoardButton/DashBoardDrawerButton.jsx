@@ -43,6 +43,7 @@ export default function DashBoardDrawerButton(props)
                     onClose={() => {
                         setOpen(false)
                     }}
+                    setOpen={setOpen}
                 />
             </DashBoardDrawer>
         </>

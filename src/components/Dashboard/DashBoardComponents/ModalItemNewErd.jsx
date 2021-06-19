@@ -23,12 +23,10 @@ function ModalItemNewErd(props)
     const onSaveButton = () => {
         let createErdPromise = CreateErd(erdName)
             .then((erdResult) => {
-                console.log("create !!!!!!!!!!!!!!!!")
                 let _commitId;
                 let _erdData;
                 let getErdForcePromise = GetErdForce(erdResult.id)
                     .then((result) => {
-                        console.log("force !!!!!!!!!!!!!!!!")
                         let forceData = result.data.result
                         _commitId = forceData.commitId
                         _erdData = forceData.erdData

@@ -108,18 +108,19 @@ export default function Dashboard(props) {
         <>
             <header style={{
                 height: '80px',
-                backgroundColor: '#333333',
-                display: 'flex'
+                backgroundColor: '#F1F1F6',
+                display: 'flex',
             }}>
                 <div style={{
                     display: 'flex',
                     justifyContent: 'center',
                     paddingLeft: "60px",
-                    paddingTop: "20px",
+                    paddingTop: "30px",
                 }}>
                     <Typography variant="h4" 
                         style={{
-                            color: "#FFFFFF"
+                            color: "#111111",
+                            font: "bold 24px/1 sans-serif",
                         }}
                     >
                         {Store.getState().ErdData.erdName ? Store.getState().ErdData.erdName : "ERD 작업을 시작하세요!"}
@@ -206,6 +207,7 @@ export default function Dashboard(props) {
                 <GenerateVuerd
                     {...props}
                     erdData={erdData}
+                    erdName={Store.getState().ErdData.erdName}
                 />
             </div>
         </>

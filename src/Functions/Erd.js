@@ -47,11 +47,10 @@ export async function GetErdList()
         }
     )
 }
-export async function GetErdTimeLine(_erdName)
+export async function GetErdTimeLine(_erdName, _owner_id = "")
 {
     let axios = require('axios')
-
-    return await axios.get(process.env.REACT_APP_SERVER + 'commit/' + _erdName,
+    return await axios.get(process.env.REACT_APP_SERVER + 'commit/' + _erdName + "/" + _owner_id,
         {
             headers: {
                 'Accept': 'application/json',
@@ -101,12 +100,14 @@ export async function GetErdForce(_erdId)
         }
     )
 }
-export async function SaveErd(_erdName, _data)
+export async function SaveErd(_erdName, _data, _owner_id)
 {
     let axios = require('axios')
-
+    console.log("asdasdasdassd")
+    console.log(_owner_id)
     let data = {
-        data: _data
+        data: _data,
+        owner_id: _owner_id
     }
     let token = await GetUserAccessToken();
     let response = await axios.post(process.env.REACT_APP_SERVER + 'commit/' + _erdName,
