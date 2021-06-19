@@ -28,33 +28,32 @@ function DrawerItemErdList(props)
     const {onWorkingErd} = props
     const {onSetFunction} = props
     const {onClose} = props
-    const {setOpen} = props
 
     const [list, setList] = useState()
+    const [loading, setLoading] = useState(true)
 
 
-
-    useLayoutEffect( async () => {
+    var tempList = []
+    useLayoutEffect(  () => {
         // Get entire Erd List
-        let getErdListPromise = await GetErdList()
-            .then(async (result) => {
+        let getErdListPromise =  GetErdList()
+            .then((result) => {
                 // Map each Erd List
-                let tempList = []
-                let tempListTemp = await Promise.all(result.data.result.map(async (item) => {
+
+                result.data.result.map( (item) => {
                     let erdData = {}
                     // Get Each Erd List's time line
-                    let testPromise = await GetErdTimeLine(item.erdName, item.owner_id ? item.owner_id : Store.getState().User.userId)
-                        .then(async (result) => {
+                    GetErdTimeLine(item.erdName, item.owner_id ? item.owner_id : Store.getState().User.userId)
+                        .then((result) => {
                             let badgeCount = 0;
-                            let currentUserId = await Store.getState().User.userId;
-
+                            let currentUserId = Store.getState().User.userId;
                             // Map each Time line
-                            await Promise.all(result.data.result.map((dataItem) => {
+                            result.data.result.map((dataItem) => {
                                 if(dataItem.createdWho != currentUserId)
                                     badgeCount++
                                 else
                                     badgeCount = 0
-                            }));
+                            });
 
                             erdData = {
                                 erdId: item.erdId,
@@ -63,22 +62,11 @@ function DrawerItemErdList(props)
                                 owner_id: item.owner_id ? item.owner_id : "",
                                 badgeCount: badgeCount,
                             }
-                            return erdData;
+                            tempList.push(erdData)
                         })
-                    await tempList.push(testPromise)
-                    return testPromise;
-                    // return testPromise;
-                }))
-                console.log('!!!!!!!!!');
-                console.log(tempListTemp);
-                return tempListTemp;
-
+                })
+                setList(tempList)
             })
-        console.log('getErdListPromise');
-        console.log(getErdListPromise);
-        setList(getErdListPromise)
-        //setList(erdList)
-
     }, [])
 
     const onLoadButtonClick = (_erdId, _erdName, _owner_id) => {
@@ -103,23 +91,39 @@ function DrawerItemErdList(props)
             })
     }
 
-    useEffect(() => {
-        console.log("useEffect")
-        console.log(list)
 
+    useEffect(() => {
+        console.log("DrawerItemErdListItem")
+        if(list)
+        {
+            console.log("list true")
+            console.log(list)
+            setLoading(false)
+        }
+        else
+        {
+            console.log("list false")
+            console.log(list)
+        }
     }, [list])
+
+    if(loading) {
+        console.log("loading : " + loading)
+        return (<div>loading...</div>);
+    }
+
     return (
         <>
             {
-                list && <DrawerItemErdListItem
+                <DrawerItemErdListItem
                     list={list}
                     onLoadButtonClick={onLoadButtonClick}
-                    setOpen={setOpen}
+                    loading={loading}
                 />
             }
         </>
     );
-};
+}
 const mapToDispatch = (dispatch) => ({
     onWorkingErd: (action) => dispatch(assignWorkingErd(action))
 });

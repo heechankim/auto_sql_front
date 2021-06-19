@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 
 // material-ui
 import Container from "@material-ui/core/Container";
@@ -17,17 +17,7 @@ export default function DrawerItemErdListItem(props)
 {
     const {list} = props;
     const {onLoadButtonClick} = props;
-    const {setOpen} = props
-
-
-    useLayoutEffect(() => {
-        console.log('DrawerItemErdListItem')
-        console.log(list)
-    }, [list])
-
-    useEffect(() => {
-        setOpen(true)
-    }, [])
+    const {loading} = props;
 
     const drawing = () => {
         console.log("drawing function")
@@ -39,7 +29,6 @@ export default function DrawerItemErdListItem(props)
                 alignItems: 'center',
             }}
         >
-            asdasdqqq
             {
                 list.map(item => (
                     <Badge
@@ -64,7 +53,6 @@ export default function DrawerItemErdListItem(props)
                                     />
                                     : ""}
                             >
-                                asd
                                 {item.erdName}
                             </AccordionSummary>
                             <AccordionDetails>
@@ -89,7 +77,7 @@ export default function DrawerItemErdListItem(props)
     return (
         <>
             {
-                drawing()
+                loading && drawing()
             }
         </>
     );
