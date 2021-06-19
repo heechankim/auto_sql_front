@@ -36,7 +36,10 @@ export default function DashBoardModalButton(props)
                 Icon={props.Icon}
             >
                 <Component
-                    setOpen={setOpen}
+                    onSetFunction={props.onSetFunction}
+                    onClose={() => {
+                        setOpen(false)
+                    }}
                 />
             </DashBoardModal>
         </>

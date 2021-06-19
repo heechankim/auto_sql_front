@@ -1,5 +1,5 @@
 import {GetUserAccessToken} from 'Functions'
-export function CreateErd(_erdName)
+export async function CreateErd(_erdName)
 {
     let axios = require('axios')
 
@@ -7,7 +7,7 @@ export function CreateErd(_erdName)
         name:  _erdName,
     }
 
-    axios.post(process.env.REACT_APP_SERVER + "erd",
+    return await axios.post(process.env.REACT_APP_SERVER + "erd",
         JSON.stringify(data),
         {
             headers: {
@@ -22,6 +22,7 @@ export function CreateErd(_erdName)
         .then((response) => {
             console.log("CreateErd - then")
             console.log(response)
+            return response.data.result
         })
         .catch((error) => {
             console.log("CreateErd - error")
@@ -108,9 +109,6 @@ export async function SaveErd(_erdName, _data)
         data: _data
     }
     let token = await GetUserAccessToken();
-    console.log('토쿤' + token)
-    console.log(_erdName)
-
     let response = await axios.post(process.env.REACT_APP_SERVER + 'commit/' + _erdName,
         JSON.stringify(data),
         {
@@ -125,6 +123,5 @@ export async function SaveErd(_erdName, _data)
             maxBodyLength: 1000000000
         }
     );
-    console.log(response)
     return response
 }

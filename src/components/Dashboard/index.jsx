@@ -31,6 +31,8 @@ import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 import SaveIcon from '@material-ui/icons/Save';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 
+import Typography from '@material-ui/core/Typography'
+
 // 3rd-party
 import Draggable from 'react-draggable'
 
@@ -105,12 +107,26 @@ export default function Dashboard(props) {
     return (
         <>
             <header style={{
-                height: '50px',
+                height: '80px',
                 backgroundColor: '#333333',
                 display: 'flex'
             }}>
-                <Draggable
-                    defaultPosition={{ x: 100, y: 120 }}
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    paddingLeft: "60px",
+                    paddingTop: "20px",
+                }}>
+                    <Typography variant="h4" 
+                        style={{
+                            color: "#FFFFFF"
+                        }}
+                    >
+                        {Store.getState().ErdData.erdName ? Store.getState().ErdData.erdName : "ERD 작업을 시작하세요!"}
+                    </Typography>
+                </div>
+            <Draggable
+                    defaultPosition={{ x: 100, y: 200 }}
                     scale={1}
                     position={null}
                     onDrag={() => {
@@ -135,6 +151,7 @@ export default function Dashboard(props) {
                     </Fab>
                 </Draggable>
                 <StyledMenu
+                
                     id="customized-menu"
                     anchorEl={anchorEl}
                     keepMounted
@@ -144,6 +161,7 @@ export default function Dashboard(props) {
                     <StyledMenuItem>
                         <DashBoardModalButton
                             component={ModalItemNewErd}
+                            onSetFunction={setErdData}
                             Icon={<AddBoxIcon fontSize="small" />}
                         >
                             새로작성
@@ -163,6 +181,7 @@ export default function Dashboard(props) {
                     <StyledMenuItem>
                         <DashBoardModalButton
                             component={ModalItemSaveButton}
+                            onSetFunction={setErdData}
                             Icon={<SaveIcon fontSize="small" />}
                         >
                             저장하기

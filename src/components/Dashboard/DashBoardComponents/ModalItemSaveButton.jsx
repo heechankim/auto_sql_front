@@ -6,25 +6,28 @@ import Card from "@material-ui/core/Card";
 
 // for redux
 import {Store} from 'Store'
+import {connect} from 'react-redux'
+import {assignWorkingErd} from "Store/ErdData";
 
 // functions
-import {SaveErd} from 'Functions/Erd'
+import {GetErdForce, SaveErd} from 'Functions/Erd'
 
-export default function ModalItemSaveButton(props)
+function ModalItemSaveButton(props)
 {
     const [text, setText] = useState('저장중.')
 
-    const {setOpen} = props
+    const {onWorkingErd} = props
+    const {onSetFunction} = props
+    const {onClose} = props
 
     useEffect(async () => {
         console.log("========= save button ==========");
         if(Store.getState().ErdData.erdId == -1) {
             setText('선택된 ERD가 존재하지 않습니다.');
             setTimeout(() => {
-                setOpen(false);
+                onClose();
             }, 1000);
         }
-        console.log(Store.getState().VuerdData.editor.value)
         await SaveErd(Store.getState().ErdData.erdName, Store.getState().VuerdData.editor.value)
             .then((result) => {
                 console.log("SaveErd - then")
@@ -33,7 +36,22 @@ export default function ModalItemSaveButton(props)
                 {
                     setText('저장되었습니다.');
                     setTimeout(() => {
-                        setOpen(false);
+                        let _commitId;
+                        let _erdData;
+                        let getErdForcePromise = GetErdForce(Store.getState().ErdData.erdId)
+                            .then((result) => {
+                                let forceData = result.data.result
+                                _commitId = forceData.commitId
+                                _erdData = forceData.erdData
+
+                                let payload = {
+                                    commitId: _commitId,
+                                    erdData: _erdData,
+                                }
+                                onWorkingErd(payload)
+                                onSetFunction(_erdData)
+                                onClose()
+                            })
                     }, 1000);
                 }
             })
@@ -61,3 +79,8 @@ export default function ModalItemSaveButton(props)
         </>
     );
 }
+const mapToDispatch = (dispatch) => ({
+    onWorkingErd: (action) => dispatch(assignWorkingErd(action))
+});
+
+export default connect(null, mapToDispatch)(ModalItemSaveButton);
