@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title> Bulkit :: Home</title>
+    <title> autoSQL :: Home</title>
     <link rel="icon" type="image/png" href="assets/img/favicon.png" />
 
     <!--Core CSS -->
@@ -15,7 +15,8 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/app.css">
     <link id="theme-sheet" rel="stylesheet" href="assets/css/core.css">
-
+    <script src="./count.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 
 <body class="is-theme-core">
@@ -90,8 +91,26 @@
                         <!--Update Pill-->
                         <div class="update-pill">
                             <span class="inner-tag">업데이트</span>
-                            <span class="inner-text">ERD 공유 기능 추가</span>
+                            <span class="inner-text" id="update-typed-strings"></span>
                         </div>
+                        <script>
+                            let typed = new Typed('#update-typed-strings', {
+                                strings:['전세계 ERD 공유 중',
+                                    'ERD 영구 삭제 기능',
+                                    '우주 최강 UI/UX',
+                                    '기타 결함 개선',
+                                    'PPT 생성 중...',
+                                    '교수님 사랑합니다',
+                                ],
+                                typeSpeed: 130,
+                                startDelay: 700,
+                                backSpeed: 60,
+                                backDelay: 700,
+                                loop: true,
+                                showCursor: true,
+                                cursorChar: '<'
+                            });
+                        </script>
 
                         <h1 class="title main-title text-bold is-2">
                             수많은 DBMS를 위한 단 하나의 도구<br/>
@@ -102,7 +121,7 @@
                         <br>
                         <!-- Signup form -->
                         <div class="navbar-item is-button">
-                            <a id="#signup-btn" href="https://autosql.co.kr/" class="button button-cta is-bold is-rounded btn-align primary-btn raised">
+                            <a id="#signup-btn" href="https://erd.autosql.co.kr/" class="button button-cta is-bold is-rounded btn-align primary-btn raised">
                                 시작하기
                             </a>
                         </div>
@@ -150,7 +169,7 @@
                     <div class="column is-3">
                         <div class="wavy-icon-box">
                             <div class="is-icon-reveal">
-                                <i class="im im-icon-Button"></i>
+                                <i class="im im-icon-Split-Window"></i>
                             </div>
                             <div class="box-title">효율적인 설계</div>
                             <p class="box-content is-tablet-padded">DBMS의 종속성을 벗어나 어느 테이블, 관계 그리고 Auto Increment 설정도 지능적으로 DBMS에 맞게 쿼리를 생산합니다.</p>
@@ -178,7 +197,7 @@
                     </div>
                 </div>
                 <div class="has-text-centered pt-40 pb-40">
-                    <a href="#" class="button button-cta primary-btn rounded raised">Learn more</a>
+                    <!-- <a href="#" class="button button-cta primary-btn rounded raised">Learn more</a> -->
                 </div>
             </div>
         </div>
@@ -200,7 +219,7 @@
                 <div class="columns is-vcentered pb-40 pt-40">
                     <div class="column is-4 is-offset-1">
                         <!-- Title -->
-                        <div class="icon-subtitle"><i class="im im-icon-Calendar-4"></i></div>
+                        <div class="icon-subtitle"><i class="im im-icon-Text-HighlightColor"></i></div>
                         <div class="title quick-feature has-numbers text-bold">
                             <div>스마트한 자동완성</div>
                             <div class="bg-number">1</div>
@@ -242,7 +261,7 @@
                     <!-- This column will display only on desktop and tablet landscape resolutions -->
                     <div class="column is-4 is-offset-1 is-hidden-mobile">
                         <!-- Title -->
-                        <div class="icon-subtitle"><i class="im im-icon-Video-2"></i></div>
+                        <div class="icon-subtitle"><i class="im im-icon-Eye-Visible"></i></div>
                         <div class="title quick-feature has-numbers text-bold">
                             <h2>데이터베이스 시각화</h2>
                             <div class="bg-number">2</div>
@@ -258,7 +277,7 @@
                 <div class="columns is-vcentered pb-40 pt-40">
                     <div class="column is-4 is-offset-1">
                         <!-- Title -->
-                        <div class="icon-subtitle"><i class="im im-icon-Business-ManWoman"></i></div>
+                        <div class="icon-subtitle"><i class="im im-icon-ID-3"></i></div>
                         <div class="title quick-feature has-numbers text-bold">
                             <h2>클래스 생성</h2>
                             <div class="bg-number">3</div>
@@ -280,12 +299,12 @@
     </div>
 
     <!-- Services -->
-    <div class="section is-medium">
+    <div class="section is-medium" id="for-developers">
         <div class="container">
             <!-- Title -->
             <div class="section-title-wrapper has-text-centered">
                 <div class="bg-number">3</div>
-                <h2 class="section-title-landing" id="for-developers">
+                <h2 class="section-title-landing">
                     개발자를 위한 도구
                 </h2>
                 <h4>오롯이 설계에만 집중할 수 있는</h4>
@@ -354,26 +373,26 @@
                             <div class="counter-icon">
                                 <i class="im im-icon-Duplicate-Window"></i>
                             </div>
-                            <div class="counter counter-number text-bold">237</div>
+                            <div class="counter counter-number text-bold" id="erd-count"></div>
                             <div class="counter-text">ERD 생성</div>
                         </div>
                     </div>
                     <div class="column is-4">
                         <div class="parallax-counter">
                             <div class="counter-icon">
-                                <i class="im im-icon-Funky"></i>
+                                <i class="im im-icon-Add-User"></i>
                             </div>
-                            <div class="counter counter-number text-bold">30</div>
+                            <div class="counter counter-number text-bold" id="user-count"></div>
                             <div class="counter-text">회원 가입</div>
                         </div>
                     </div>
                     <div class="column is-4">
                         <div class="parallax-counter">
                             <div class="counter-icon">
-                                <i class="im im-icon-Video-5"></i>
+                                <i class="im im-icon-Sharethis"></i>
                             </div>
-                            <div class="counter counter-number text-bold">1,342</div>
-                            <div class="counter-text">실행 횟수</div>
+                            <div class="counter counter-number text-bold" id="share-count"></div>
+                            <div class="counter-text">공유 횟수</div>
                         </div>
                     </div>
                 </div>
@@ -1364,7 +1383,7 @@ public class ProductIo {
                 <div class="section-title-wrapper has-text-centered">
                     <div class="bg-number">6</div>
                     <h2 class="section-title-landing">
-                        부족한
+                        열정 넘치는
                     </h2>
                     <h4>저희가 만들었습니다.</h4>
                 </div>
@@ -1378,22 +1397,22 @@ public class ProductIo {
                                     <!-- Testimonial item -->
                                     <div class="flex-card testimonial-card light-raised light-bordered padding-20">
                                         <div class="testimonial-title" style="font-weight: bold;">
-                                            undefined
+                                            마크업의 영역, 프론트에 도전!
                                         </div>
                                         <div class="testimonial-text" style="font-style: normal; color:slategray;">
-                                            undefined
+                                            React.js로 프론트 개발을 진행하였습니다. 마크업/CSS의 온전한 분리, 모듈화/라이브러리화, Material-Ui 컴포넌트 적용 등에 초점을 두어 개발을 진행하였습니다. 주로 Redux.js의 상태 데이터베이스 Store를 중심으로 프론트의 다양한 기능을 구현하는 것을 핵심으로 개발하였습니다.
                                         </div>
                                         <div class="user-id">
-                                            <img src="https://via.placeholder.com/250x250" alt="" data-demo-src="assets/img/avatars/helen.jpg">
+                                            <img src="https://autosql.co.kr/images/profile_kim.jpeg" alt="" data-demo-src="assets/img/avatars/helen.jpg">
                                             <div class="info">
                                                 <div class="name clean-text" style="padding-top:0.5em;">김희찬</div>
                                                 <div class="testimonial-title" style="padding-top:0px; color:slategray;">Front-end</div>
                                             </div>
                                             <div class="social-links">
-                                                <a href="https://charming-kyu.tistory.com/" style="color:dimgray; font-size: 1.5em; margin-right: 1em; margin-left: 1em">
-                                                    <span class="icon"><i class="fa fa-blog"></i></span>
+                                                <a href="https://www.notion.so/chanspace/817480c3cbc547a9bf928d89accf9757" style="color:dimgray; font-size: 1.5em; margin-right: 1em; margin-left: 1em">
+                                                    <span class="icon"><i class="fa fa-user"></i></span>
                                                 </a>
-                                                <a href="https://github.com/loadkrnis" style="color:dimgray; font-size: 1.5em; margin-right: 1em;">
+                                                <a href="https://github.com/chandaley12" style="color:dimgray; font-size: 1.5em; margin-right: 1em;">
                                                     <span class="icon"><i class="fa fa-github"></i></span>
                                                 </a>
                                             </div>
@@ -1504,7 +1523,7 @@ public class ProductIo {
                 </div>
                 <div class="head-action">
                     <div class="buttons">
-                        <a class="button primary-btn raised action-button is-bold" href="/">로그인</a>
+                        <a class="button primary-btn raised action-button is-bold" href="https://erd.autosql.co.kr">로그인</a>
                         <a class="button chat-button"></a>
                     </div>
                 </div>
