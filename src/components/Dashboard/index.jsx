@@ -136,7 +136,7 @@ export default function Dashboard(props) {
         <>
             <header style={{
                 height: '80px',
-                backgroundColor: '#F1F1F6',
+                backgroundColor: '#333333',
                 display: 'flex',
             }}>
                 <div style={{
@@ -147,7 +147,7 @@ export default function Dashboard(props) {
                 }}>
                     <Typography variant="h4" 
                         style={{
-                            color: "#111111",
+                            color: "#FFFFFF",
                             font: "bold 24px/1 sans-serif",
                         }}
                     >
