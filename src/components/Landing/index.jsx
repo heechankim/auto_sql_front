@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: '-8px 8px 25px 10px #73FAF8',
     },
     media: {
-        width:300,
-        height:257,
+        width:400,
+        height:216,
         marginTop: 16,
         marginBottom: 16,
         margin: 'auto',
@@ -70,7 +70,7 @@ export default function Landing({props, history})
     const [isLogin, setIsLogin] = useState(false)
 
     useEffect(() => {
-        setGotoAutoSQL(<Chip label="AutoSQL 사용하기" onClick={() => { history.push('/dashboard') }} />)
+        setGotoAutoSQL(<Chip label="AUTOSQL 사용하기" onClick={() => { history.push('/dashboard') }} />)
     }, []);
 
     const classes = useStyles();
@@ -87,7 +87,7 @@ export default function Landing({props, history})
                         </CardContent>
                         <CardMedia
                             className={classes.media}
-                            image="images/auto_sql_logo.png"
+                            image="images/auto_sql_logo_v2.png"
                             title="AutoSQL"
                         />
                         <CardContent className={classes.center}>
@@ -104,7 +104,7 @@ export default function Landing({props, history})
                             (<StyledChip
                                 className={classes.gotoAutoSqlChip}
                                 color="primary" 
-                                label="AutoSQL 사용하기" 
+                                label="AUTOSQL 사용하기"
                                 onClick={() => { history.push('/dashboard') }} 
                             />) 
                             : 
