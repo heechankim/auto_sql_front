@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react'
+import React, {useEffect, useLayoutEffect, useState, useMemo} from 'react'
 
 // material-ui
 import Container from '@material-ui/core/Container'
@@ -58,11 +58,20 @@ function DrawerItemCommits(props)
     //for list
     const [list, setList] = useState([]);
 
+    // 2021.11.02 10:24 chandaley12 인덱싱을 위해서 indexId 추가후 1부터 증가
+    const getList = useMemo(() => {
+        let startIndex = 1;
+        list.map((item) => {
+            item.indexId = startIndex++
+        })
+        return list;
+    }, [list])
+
     const classes = useStyles();
 
 
     // timeline 생성
-    useEffect(() => {
+    useLayoutEffect(() => {
         GetErdTimeLine(Store.getState().ErdData.erdName, Store.getState().ErdData.ownerId ? Store.getState().ErdData.ownerId : Store.getState().User.userId)
             .then((result) => {
                 setList(result.data.result);
@@ -103,7 +112,7 @@ function DrawerItemCommits(props)
         <Container>
             <Timeline align="alternate">
                 {
-                    list.slice(0).reverse().map((item) => (
+                    getList.slice(0).reverse().map((item) => (
                         <TimelineItem
                             key={item.commitId}
                         >
@@ -117,7 +126,7 @@ function DrawerItemCommits(props)
                                 <TimelineDot
                                     color={item.commitId === primaryIndex ? "primary" : "grey"}
                                 >
-                                    {item.commitId}
+                                    {item.indexId}
                                 </TimelineDot>
                             </TimelineSeparator>
                             <TimelineContent>
@@ -141,7 +150,7 @@ function DrawerItemCommits(props)
                                         {
                                             LookGoodDate(item.createdAt)
                                         }
-                                            <br />
+                                        <br />
                                         {
                                             LookGoodTime(item.createdAt)
                                         }

@@ -155,7 +155,7 @@ export default function Dashboard(props) {
                     </Typography>
                 </div>
             <Draggable
-                    defaultPosition={{ x: 100, y: 200 }}
+                    defaultPosition={{ x: 20, y: 300 }}
                     scale={1}
                     position={null}
                     onDrag={() => {
@@ -228,16 +228,16 @@ export default function Dashboard(props) {
                             tooltipOpen
                         />
                         <SpeedDialAction
-                            key="변경사항"
+                            key="작업내역"
                             icon={<DashBoardDrawerButton
                                 DrawerWidth="500px"
                                 DrawerPosition="right"
                                 component={DrawerItemCommits}
-                                ComponentTitle="변경사항"
+                                ComponentTitle="작업내역"
                                 onSetFunction={setErdData}
                                 Icon={<SettingsBackupRestoreIcon/>}
                             />}
-                            tooltipTitle="변경사항"
+                            tooltipTitle="작업내역"
                             tooltipOpen
                         />
                         <SpeedDialAction

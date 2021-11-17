@@ -27,6 +27,9 @@ export default function ModalItemSharedButton(props)
 
     const [isSelected, setIsSelected] = useState(false);
 
+    const [isSharing, setIsSharing] = useState(false);
+    const [text, setText] = useState('공유중.')
+
     useEffect(() => {
         if(Store.getState().ErdData.erdId == -1) {
             setIsSelected(false)
@@ -43,13 +46,22 @@ export default function ModalItemSharedButton(props)
         let sharedErdPromise = SharedErd( Store.getState().ErdData.erdId, Store.getState().ErdData.erdName, teamName, teamMember)
             .then((result) => {
                 if(result.data.code === 200)
-                    onClose()
+                {
+                    setIsSharing(true)
+                    setTimeout(() => {
+                        setText("공유되었습니다.")
+                    }, 2500)
+                    setTimeout(() => {
+                        onClose()
+                    }, 4000)
+                }
             })
     }
 
     if(!isSelected) {
         return (
-            <div style={{
+            <div
+                style={{
                 width: '400px',
                 height: '180px',
             }}>
@@ -76,75 +88,98 @@ export default function ModalItemSharedButton(props)
     }
 
     return (
-        <div style={{
-            width: '400px',
+        <>
+            <div style={{
+                width: '400px',
+                display: isSharing ? 'none' : 'block',
+            }}>
 
-        }}>
-
-            <form noValidate autoComplete="off">
-                <TextField
-                    id="shared_name"
-                    label="팀 이름"
-                    variant="outlined"
-                    style={{
-                        width: '100%',
-                    }}
-                    onChange={(event) => {
-                        event.preventDefault()
-                        setTeamName(event.target.value)
-                    }}
-                    autoFocus
-                />
-
-                <div
-                    style={{
-                        marginTop: '20px'
-                    }}
-                >
-                    <Autocomplete
-                        multiple
-                        id="team-member"
-                        options={teamMember}
-                        getOptionLabel={(option) => option}
-                        onChange={(event, value) => {
-                            setTeamMember(value)
+                <form noValidate autoComplete="off">
+                    <TextField
+                        id="shared_name"
+                        label="팀 이름"
+                        variant="outlined"
+                        style={{
+                            width: '100%',
                         }}
-                        renderInput={(params) => (
-                            <TextField
-                                {...params}
-                                variant="outlined"
-                                label="팀원 추가"
-                                placeholder="이메일입력"
-                                onKeyPress={(event) => {
-                                    if(event.key === "Enter") {
-                                        setTeamMember([...teamMember, event.target.value])
-                                    }
-                                }}
-                            />
-                        )}
+                        onChange={(event) => {
+                            event.preventDefault()
+                            setTeamName(event.target.value)
+                        }}
+                        autoFocus
                     />
-                </div>
-            </form>
 
-                <div
-                    style={{
-                        width: '100%',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        marginTop: '20px'
-                    }}
-                >
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        startIcon={<ShareIcon />}
-                        onClick={onSharedButton}
+                    <div
+                        style={{
+                            marginTop: '20px'
+                        }}
                     >
-                        공유하기
-                    </Button>
-                </div>
+                        <Autocomplete
+                            multiple
+                            id="team-member"
+                            options={teamMember}
+                            getOptionLabel={(option) => option}
+                            onChange={(event, value) => {
+                                setTeamMember(value)
+                            }}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    variant="outlined"
+                                    label="팀원 추가"
+                                    placeholder="이메일입력"
+                                    onKeyPress={(event) => {
+                                        if(event.key === "Enter") {
+                                            setTeamMember([...teamMember, event.target.value])
+                                        }
+                                    }}
+                                />
+                            )}
+                        />
+                    </div>
+                </form>
 
-        </div>
+                    <div
+                        style={{
+                            width: '100%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            marginTop: '20px'
+                        }}
+                    >
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            size="large"
+                            startIcon={<ShareIcon />}
+                            onClick={onSharedButton}
+                        >
+                            공유하기
+                        </Button>
+                    </div>
+
+
+            </div>
+            <div style={{
+                width: '400px',
+                height: '180px',
+                display: isSharing ? 'block' : 'none',
+            }}>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginBottom: '50px',
+                }}>
+                    {text}
+                </div>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '20px'
+                }}>
+                    <CircularProgress color="inherit" />
+                </div>
+            </div>
+        </>
     );
 }

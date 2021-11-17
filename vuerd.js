@@ -6018,7 +6018,7 @@ var vuerd = (function (exports) {
     border: solid
       var(--vuerd-theme-table-active, var(--vuerd-color-table-active))
       ${SIZE_TABLE_BORDER}px;
-    box-shadow: 0 1px 6px
+    box-shadow: 0 1px 40px
       var(--vuerd-theme-table-active, var(--vuerd-color-table-active));
   }
   .vuerd-table .vuerd-table-header-top {
@@ -6261,7 +6261,7 @@ var vuerd = (function (exports) {
   .vuerd-memo.active {
     border: solid
       var(--vuerd-theme-table-active, var(--vuerd-color-table-active)) 1px;
-    box-shadow: 0 1px 6px
+    box-shadow: 0 1px 30px
       var(--vuerd-theme-table-active, var(--vuerd-color-table-active));
   }
   .vuerd-memo > .vuerd-memo-header {
@@ -22417,7 +22417,7 @@ var vuerd = (function (exports) {
 
     const menus = [
         {
-            title: "ERD 보기",
+            title: "ERD 편집 툴",
             canvasType: "ERD",
             prefix: "fas",
             icon: "project-diagram",
@@ -22431,14 +22431,14 @@ var vuerd = (function (exports) {
         //     size: 18,
         // },
         {
-            title: "시각화 보기",
+            title: "테이블 시각화",
             canvasType: "Visualization",
             prefix: "mdi",
             icon: "chart-bubble",
             size: 24,
         },
         {
-            title: "DDL 생성",
+            title: "SQL 생성",
             canvasType: "SQL",
             prefix: "fas",
             icon: "code",
@@ -26352,7 +26352,7 @@ var vuerd = (function (exports) {
             })}
       >
         <div class="vuerd-find-header">
-          <h3>Find</h3>
+          <h3>찾기</h3>
           <vuerd-find-table @blur=${this.onClose}></vuerd-find-table>
           <vuerd-icon
             class="vuerd-button"

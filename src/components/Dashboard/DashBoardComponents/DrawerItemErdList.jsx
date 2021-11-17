@@ -137,21 +137,21 @@ function DrawerItemErdList(props)
         alertClick()
         setTimeout(() => {
             if(revert === false) {
-                console.log("revert false")
+                //console.log("revert false")
                 let getErdForcePromise = DeleteErd(_erdId)
                     .then((result) => {
                         if (result.data.code === 200) {
-                            console.log(list.slice(0, targetIndex))
-                            console.log(list.slice(targetIndex + 1, list.length))
+                            //console.log(list.slice(0, targetIndex))
+                            //console.log(list.slice(targetIndex + 1, list.length))
                             setList(list.slice(0, targetIndex).concat(list.slice(targetIndex + 1, list.length)))
                         }
                     })
             }
             else {
-                console.log("revert true")
+                //console.log("revert true")
                 revert = false
             }
-        }, 5300)
+        }, 2000)
 
     }
 

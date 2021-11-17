@@ -103,8 +103,6 @@ export async function GetErdForce(_erdId)
 export async function SaveErd(_erdName, _data, _owner_id)
 {
     let axios = require('axios')
-    console.log("asdasdasdassd")
-    console.log(_owner_id)
     let data = {
         data: _data,
         owner_id: _owner_id
